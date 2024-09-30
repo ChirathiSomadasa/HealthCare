@@ -46,7 +46,7 @@
   
     background-image: url(../../images/healthcard/signup.jpg);
     width: 100%;
-    min-height: 1000px;
+    min-height: 1300px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -72,6 +72,7 @@
     right: 0;
     padding-right: 200px;
     padding-top: 10%;
+    padding-top: 330px;
   
   }
   

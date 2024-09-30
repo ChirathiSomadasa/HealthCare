@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { Form, Input, DatePicker,Checkbox } from 'antd';
+import { Form, Input, DatePicker, Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Radio } from 'antd';
+
 
 function SignUp() {
+  const [bloodGroup, setBloodGroup] = useState(''); // State to hold the blood group input
+
+  // Predefined list of blood groups
+  const bloodGroupsList = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+
+  const handleBloodGroupChange = (e) => {
+    setBloodGroup(e.target.value); // Update state as user types
+  };
   var navigate = useNavigate();
 
   const onFinishSignIn = (values) => {
@@ -62,7 +72,6 @@ function SignUp() {
         <div className="authentication-form card p-2">
           <h1 className="card-title">CREATE AN ACCOUNT</h1>
           <Form layout="vertical" onFinish={onFinishSignIn}>
-
             <Form.Item
               label="Full Name"
               name="full_name"
@@ -87,7 +96,7 @@ function SignUp() {
                 },
               ]}
             >
-              <Input className="signup_input" placeholder="Adress" />
+              <Input className="signup_input" placeholder="Address" />
             </Form.Item>
 
 
@@ -138,6 +147,84 @@ function SignUp() {
               <DatePicker className='date' />
             </Form.Item>
             <Form.Item
+              label="Age"
+              name="age"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your age!',
+                },
+              ]}
+            >
+              <Input className="signup_input" placeholder="Age" />
+            </Form.Item>
+            <Form.Item
+              label="Gender"
+              name="gender"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please select your gender!',
+                },
+              ]}
+            >
+              <Radio.Group>
+                <Radio value="male">
+                  <span className="material-icons-round">Male</span>
+                </Radio>
+                <Radio value="female">
+                  <span className="material-icons-round">Female</span>
+                </Radio>
+                <Radio value="other">
+                  <span className="material-icons-round">Transgender</span>
+                </Radio>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item
+              label="Weight(Kg)"
+              name="weight"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your weight!',
+                },
+              ]}
+            >
+              <Input className="signup_input" placeholder="Weight" />
+            </Form.Item>
+            <Form.Item
+              label="Height(Inches)"
+              name="height"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your height!',
+                },
+              ]}
+            >
+              <Input className="signup_input" placeholder="Height" />
+            </Form.Item>
+
+            <Form.Item
+              label="Blood Group (A+,A-,B+,B-,AB+,AB-,O+,O-)"
+              name="blood_group"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your blood group!',
+                },
+              ]}
+            >
+              <Input
+                className="signup_input"
+                placeholder="blood_group"
+                value={bloodGroup}
+                onChange={handleBloodGroupChange} // Update state on change
+              />
+            </Form.Item>
+
+
+            <Form.Item
               label="Password"
               name="password"
               rules={[
@@ -154,7 +241,7 @@ function SignUp() {
             </Form.Item>
 
             <Checkbox value="physicalCard">Do you request Physical Health Card?</Checkbox>
-            
+
             <button className="primary-button" type="submit" >SIGN UP</button>
             <p className="para">
               Already have an account?<Link to="/login" className="anchor">LOGIN</Link>

@@ -34,20 +34,31 @@ router.route("/register").post((req, res) => {
     var mobileNumber = req.body.mobile_number;
     var email = req.body.email;
     var birthDate = req.body.birthdate;
-    var password = req.body.password;
+    var age = req.body.age;
+    var gender = req.body.gender;
+    var weight = req.body.weight;
+    var height = req.body.height;
+    var blood_group = req.body.blood_group;
 
+    var password = req.body.password;
+    
     //validate details
     if (fullName == null || fullName == "" ||
         address == null || address == "" ||
         mobileNumber == null || mobileNumber == "" ||
         email == null || email == "" ||
         birthDate == null || birthDate == "" ||
-        password == null || password == "") {
+        age == null ||  age =="" ||
+        gender == null || gender =="" ||
+        weight == null || weight =="" || 
+        height == null || height =="" ||
+        blood_group == null || blood_group =="" ||
+        password == null || password == "" ) {
 
         res.send({ "status": "required_failed", "message": "Please send required details." });
 
         return;
-    }
+    } 
 
     //check email is already
     User.findOne({ email: email }).then((doc) => {
@@ -61,6 +72,11 @@ router.route("/register").post((req, res) => {
             user.mobile_number = mobileNumber;
             user.email = email;
             user.birthdate = birthDate;
+            user.age = age;
+            user.gender = gender;
+            user.weight = weight;
+            user.height = height;
+            user.blood_group = blood_group;
             user.password = password;
 
             user.save().then(() => {

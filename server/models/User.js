@@ -10,6 +10,11 @@ var userSchema = new Schema(
         address:{type:String, required:true},
         email:{type:String,required:true},
         birthdate:{type:String,required:true},
+        age:{type:Number,required:true},
+        gender:{type:String,required:true},
+        weight:{type:Number,required:true},
+        height:{type:Number,required:true},
+        blood_group:{type:String,required:true},
         password:{type:String,required:true},
         profile_pic:{type:String}
     }
