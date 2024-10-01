@@ -105,7 +105,6 @@ function Profile() {
                     <div className="lower_pcontainer">
                         <div className="profile_details">
                             <div className="profile_details_form card">
-                                <h1 className="card_title">User Information</h1>
                                 <form className='profile_form'>
                                     <label>Full Name</label>
                                     <input className="profile_input" type="text" onChange={(e)=>setFullName(e.target.value)} placeholder="Full Name" defaultValue={profileDetails.full_name} />

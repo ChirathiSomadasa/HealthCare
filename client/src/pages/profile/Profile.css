@@ -12,18 +12,17 @@
 }
 
 .profile-container {
-  width: 800px;
-  height: 1000px;
+  width: 610px;
+  height: 840px;
   margin: auto;
   border-radius: 20px;
-  margin-top: 50px;
-  background-color: white;
+   background-color: white;
   font-family: 'Merriweather';
 }
 
 .upper-container {
-  width: 780px;
-  height: 250px;
+  width: 590px;
+  height: 200px;
   background-color: rgba(175, 175, 175, 0.353);
   border-radius: 20px;
   margin: 10px;
@@ -38,8 +37,8 @@
 
 .image-container img {
   background: white;
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   padding: 5px;
   transform: translate(1%, 10%);
@@ -49,7 +48,7 @@
 .camera-upload {
   position: absolute;
   top: 40px;
-  left: 150px;
+  left: 170px;
 }
 
 .camera-button {
@@ -63,38 +62,40 @@
 }
 
 .camera-button img {
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
 }
 
 .img_text {
-  float: left;
-  width: 460px;
+  width: 600px;
 }
 
 .pcard-title {
   text-align: center;
   color: black !important;
   font-family: 'Merriweather';
-  padding-top: 100px;
+  padding-top: 80px;
+padding-left: 70px; 
+margin-right: 35px;
 }
 
 .lower_pcontainer {
-  width: 760px;
-  height: 620px;
+  width: 510px;
+  height: 500px;
   background-color: white;
   text-align: center;
   font-family: 'Merriweather';
   color: black;
-  padding-top: 120px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
 .profile_details {
-  height: 500px;
+  height: 400px;
+  width: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,12 +106,12 @@
 
 .profile_details_form {
   background-color: rgba(175, 175, 175, 0.353);
-  width: 770px;
-  height: 700px;
-  padding-left: 140px;
-  padding-right: 140px;
+  width: 450px;
+  height: 600px;
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-left: 140px;
   color: black;
-  padding-top: 20px;
   text-align: left;
   border-radius: 10px;
   border: none !important;
@@ -124,13 +125,13 @@
 }
 
 .profile_form {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .profile_input {
   background-color: white !important;
   border: white !important;
-  width: 500px;
+  width: 420px;
   height: 40px;
   padding: 5px;
   margin-top: 10px;
@@ -151,15 +152,19 @@
 .profile_btn {
   display: flex;
   justify-content: center;
+margin-right: 40px;
+width: 430px;
+
 }
 
 .save {
  
-  width: 500px;
+  width: 800px;
   height: 50px;
   background-color: rgb(0, 0, 0);
   color: white;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+  
 }
