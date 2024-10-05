@@ -1,0 +1,133 @@
+/* Appointment.css */
+.patient-list-container {
+    max-width: auto;
+    margin: 20px auto;
+    padding: 20px;
+    margin: 10px;
+    
+    border-radius: 5px;
+}
+
+.patient-list-container h1 {
+    text-align: center;
+}
+
+.patient-filter-bar {
+    height: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    background-color:#035455;
+    border-radius: 8px;
+}
+
+.patient-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.patient-list-container th {
+    padding: 20px 5px;
+    border-bottom: 1px solid #03b7bd;
+    text-align: left;
+    font-size: 14px;
+    background-color:#035455;
+    color: white;
+    
+}
+
+.patient-list-container td {
+    padding: 20px 5px;
+    border-bottom: 1px solid #03b7bd;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 100;
+    background-color:#e7fafb;
+}
+
+.generate_btn {
+    width: 100px;
+    height: 40px;
+    background-color: #b40606;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+}
+
+.generate_btn:hover {
+    background-color: #db1d1d;
+}
+
+
+.patient-status-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.patient-filter-search {
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    width: 250px;
+    margin-left: 30px;
+}
+
+.patient-filter-search-btn {
+    background-color: #03b7bd;
+    border-radius: 0px;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    cursor: pointer;
+    width: 150px;
+    font-weight: 600;
+
+}
+
+.sort_btn {
+    width: 150px;
+    height: 40px;
+    display: block !important;
+    margin-left: 550px; /* Adjust margin as needed */
+    background-color: #03b7bd;
+    color: white;
+    font-size: 14px;
+    border-radius: 10px;
+    border: none !important;
+    font-weight:600;
+}
+
+.sort_btn:hover {
+    background-color: #048587;
+}
+
+
+.add_patient_btn {
+    width: 150px;
+    height: 40px;
+    display: block !important;
+    margin-left: 20px; 
+    background-color: #03b7bd;
+    color: white;
+    font-size: 14px;
+    border-radius: 10px;
+    border: none !important;
+    font-weight: 600;
+}
+
+.add_patient_btn:hover {
+    background-color: #048587;
+}
+

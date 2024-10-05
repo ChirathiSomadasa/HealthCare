@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { Form, Input, DatePicker, Checkbox } from "antd";
 import { Link } from "react-router-dom";
-import "./SignUp.css";
+import "./AddPatient.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import AuthAPI from "../../api/AuthAPI";
 import { errorMessage, successMessage } from "../../utils/Alert";
 
-function SignUp() {
+function AddPatient() {
   var navigate = useNavigate();
 
   const { mutate, isLoading } = useMutation({
     mutationFn: AuthAPI.signup,
     onSuccess: (res) => {
       successMessage("Success", res.data.message, () => {
-        navigate("/login");
+        navigate("/patientList");
       });
     },
     onError: (err) => {
@@ -199,4 +199,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default AddPatient;
