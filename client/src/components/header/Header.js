@@ -1,79 +1,113 @@
-import { useEffect, useState } from 'react'
-import './Header.css';
-import HeaderNavButton from './NavButton';
-import HeaderButton from './HeaderButton';
-import Logo from '../../images/logo.png';
-import ProfileVector from '../../images/user.png';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import "./Header.css";
+import HeaderNavButton from "./NavButton";
+import Logo from "../../images/logo.png";
+import ProfileVector from "../../images/user.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/useAuthStore";
+import { USER_ROLES } from "../../constants/roles";
 
 function Header() {
-    const [activePage, setActivePage] = useState(null);
-    var location = useLocation();
-    var navigate = useNavigate();
-    useEffect(function () {
-        setActivePage(getPageId(location.pathname));
-    });
-    function navItemClick(id) {
-        navigate(id);
-    }
-    function onSignUpButtonClick() {
-        navigate("/signup"); // This will navigate to the SignUp page when the button is clicked
-    }
-    function onLoginButtonClick() {
-        navigate("/login");// This will navigate to the Login page when the button is clicked
-    }
+  const logout = useAuthStore((state) => state.logout);
+  const user = useAuthStore((state) => state.user);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  //
+  const [activePage, setActivePage] = useState(
+    getPageId(useLocation().pathname)
+  ); // Initialize with the correct active page
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    function onSignOutClick() {
-        navigate("/signout");
-    }
-    function onProfileButtonClick() {
-        navigate("/profile");
-    }
-    return (
-        <div className="header">
-            <div className="header-top">
-            <div className="logo">
-                    <img src={Logo} />
-                </div>
-                <div className="header-right">
-                    <>
-                        <div className='div-btn' id="login" onClick={onLoginButtonClick}>
-                            <button className='signin-button'>Login</button>
-                        </div>
-                        <div className='div-btn' id="signup" onClick={onSignUpButtonClick}>
-                            <button className='signup-button'>Sign Up</button>
-                        </div>
-                    </>
-                    <>
-                        <div className='div-btn' id="signout" onClick={onSignOutClick}>
-                            <button className='signout-button'>Sign Out</button>
-                        </div>
-                       
-                        <div className="profile" onClick={onProfileButtonClick}>
-                            <div className="profile-picture">
-                                <img src={ProfileVector} />
-                            </div>
-                        </div>
-                    </>
-                </div>
-            </div>
-            <div className="header-nav">
-                <HeaderNavButton id="" activeId={activePage} name="Home" onClick={(id) => { navItemClick(id) }} />
-                <HeaderNavButton id="about" activeId={activePage} name="About" onClick={(id) => { navItemClick(id) }} />
-                <HeaderNavButton id="appointments" activeId={activePage} name="Appointments" onClick={(id) => { navItemClick(id) }} />
-                <HeaderNavButton id="payment" activeId={activePage} name=" Payment" onClick={(id) => { navItemClick(id) }} />
-                <HeaderNavButton id="contact" activeId={activePage} name="Contact" onClick={(id) => { navItemClick(id) }} />
-            </div>
+  // Update active page when location changes
+  useEffect(() => {
+    setActivePage(getPageId(location.pathname));
+  }, [location.pathname]);
+
+  const handleNavigation = (path) => navigate(path);
+
+  const navigationButtons = [
+    { id: "", name: "Home" },
+    { id: "about", name: "About" },
+    { id: "appointments", name: "Appointments" },
+    { id: "payment", name: "Payment" },
+    { id: "contact", name: "Contact" },
+    { id: "patientList", name: "Patient List" },
+  ];
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
+  return (
+    <div className="header">
+      <div className="header-top">
+        <div className="logo" onClick={() => handleNavigation("/")}>
+          <img src={Logo} alt="Logo" />
         </div>
-    );
+        <div
+          className="header-right"
+          style={{
+            marginTop: "30px",
+          }}
+        >
+          {!isAuthenticated && (
+            <>
+              <div
+                className="div-btn"
+                onClick={() => handleNavigation("/login")}
+              >
+                <button className="signin-button">Login</button>
+              </div>
+              <div
+                className="div-btn"
+                onClick={() => handleNavigation("/signup")}
+              >
+                <button className="signup-button">Sign Up</button>
+              </div>
+            </>
+          )}
+
+          {isAuthenticated && (
+            <>
+              <div className="div-btn" onClick={handleLogout}>
+                <button className="signout-button">Sign Out</button>
+              </div>
+              <div
+                className="profile"
+                onClick={() => handleNavigation("/profile")}
+              >
+                <div className="profile-picture">
+                  <img src={ProfileVector} alt="Profile" />
+                </div>
+                {/* role */}
+                <div>{user?.role}</div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      <div className="header-nav">
+        {navigationButtons.map((button) =>
+          user?.role === USER_ROLES.PATIENT &&
+          button.id === "patientList" ? null : !isAuthenticated &&
+            button.id === "patientList" ? null : (
+            <HeaderNavButton
+              key={button.id}
+              id={button.id}
+              activeId={activePage}
+              name={button.name}
+              onClick={handleNavigation}
+            />
+          )
+        )}
+      </div>
+    </div>
+  );
 }
+
 function getPageId(path) {
-    path = path.substring(1, path.length);
-    const firstIndex = path.indexOf("/");
-    if (firstIndex == -1) {
-        return path;
-    } else {
-        return path.substring(0, firstIndex);
-    }
+  return path.split("/")[1] || ""; // Simplified path extraction logic
 }
+
 export default Header;
