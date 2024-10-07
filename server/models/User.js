@@ -14,7 +14,7 @@
 //         profile_pic:{type:String}
 //     }
 // );
-
+ 
 // var user = mongoose.model("user", userSchema);
 // module.exports = user;
 

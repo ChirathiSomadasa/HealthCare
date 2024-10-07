@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 const USER_ROLES = require("../constants/roles");
 
 const router = express.Router();
-
+ 
 router.get(
   "/",
   authMiddleware([USER_ROLES.STAFF, USER_ROLES.DOCTOR, USER_ROLES.PATIENT]),
