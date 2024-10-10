@@ -4,10 +4,11 @@ import "./PatientRecords.css";
 import { useParams } from "react-router-dom"; // Import useParams for accessing URL parameters
 import { useUsersData } from "../../hooks/useUserData";
 import { USER_ROLES } from "../../constants/roles";
-import { useAuthStore } from "../../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 function PatientList() {
 
+    const navigate = useNavigate();
 
     const { patientId } = useParams(); // Get the patient ID from the URL
     const { data: users, isLoading, isError } = useUsersData(USER_ROLES.PATIENT);
@@ -30,7 +31,7 @@ function PatientList() {
     }
 
     function AddNotePage() {
-        navigate("/patientList/AddNote");
+        navigate(`/patientList/${patientId}/AddNote`);
       }
 
 

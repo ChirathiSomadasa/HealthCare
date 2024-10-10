@@ -1,0 +1,78 @@
+.Uinfo{
+    width: 1100px;
+    height:1150px;
+    margin-top: 30px;
+    margin-left: 120px;
+    margin-right: 120px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    float: left;
+
+}
+
+.Upatient-info{
+    width:1050px;
+    height:350px;
+    background-color: rgba(238, 238, 238, 0.514);
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.Upatient-details{
+    width:1050px;
+    height:300px;
+
+}
+
+.Upatient-image{
+    width: 250px;
+    height:250px;
+    float: left;
+    background-color: black;
+    margin-left: 60px;
+ 
+
+}
+
+.Upatient-bio{
+    width: 300px;
+    height:150px;
+    float: left;
+    margin-left: 130px;
+    margin-top: 30px;
+
+}.Upatient-note{
+    width:1050px;
+    height:750px;
+    background-color: rgba(238, 238, 238, 0.514);
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: auto;
+  }
+
+  .Upatient-addnote{
+    width: 300px;
+    height:150px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
+  }
+
+  .addNoteBtn {
+    width:530px;
+    height: 50px;
+    background-color: #0c0c0c; /* Dark cyan background */
+    color: rgb(248, 247, 247); /* White text */
+    padding: 10px 15px; /* Vertical and horizontal padding */
+    border: none; /* Remove default border */
+    border-radius: 15px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+    margin-top: 107px;
+    margin-left: 190px;
+
+}

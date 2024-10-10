@@ -8,6 +8,7 @@ import Profile from "./pages/profile/Profile";
 import PatientList from "./pages/patientList/PatientList";
 import HealthCard from "./pages/patientList/HealthCard";
 import AddPatient from "./pages/patientList/AddPatient";
+import AddNote from "./pages/patientList/AddNote";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import PatientRecords from "./pages/patientList/PatientRecords";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -30,6 +31,7 @@ function App() {
             element={<HealthCard />}
           />
           <Route path="/patientList/AddPatient" element={<AddPatient />} />
+          <Route path="/patientList/:patientId/AddNote" element={<AddNote/>}/>
           <Route path="/patientList/PatientRecords/:patientId" element={<PatientRecords/>}/>
         </Routes>
       </BrowserRouter>
