@@ -29,20 +29,22 @@ function PatientList() {
         return <p>Error loading patient details.</p>;
     }
 
-   
+    function AddNotePage() {
+        navigate("/patientList/AddNote");
+      }
 
 
 
   return (
     <div>
         <div className="Ucontainer">
-            <button className="Uadd-note-btn">Add Note</button>
+            <button className="Uadd-note-btn" onClick={AddNotePage}>Add Note</button>
             <button className="Ugenerate-btn">Generate Report</button>
         </div>
 
         <div className="Uinfo">
             <div className="Upatient-info">
-                <h2 style={{textAlign:"center",paddingTop:"10px",fontFamily:"sans-serif"}}>Patient Information</h2>
+                <h2 style={{textAlign:"center",paddingTop:"15px",fontFamily:"sans-serif"}}>Patient Information</h2>
                 <div className="Upatient-details">
                     <div className="Upatient-image">
 
@@ -52,10 +54,10 @@ function PatientList() {
                       {selectedPatient ? (
                                 <>
                                     <p><strong>Name:</strong> {selectedPatient.full_name}</p>
-                                    <p><strong>ID:</strong> {selectedPatient._id}</p>
-                                    <p><strong>Date Created:</strong> {new Date(selectedPatient.createdAt).toLocaleDateString()}</p>
-                                    <p><strong>Mobile Number:</strong> {selectedPatient.mobile_number}</p>
                                     <p><strong>Address:</strong> {selectedPatient.address}</p>
+                                    <p><strong>Mobile No:</strong> {selectedPatient.mobile_number}</p>
+                                    <p><strong>Gender:</strong> {selectedPatient.mobile_number}</p>
+                                    <p><strong>Age:</strong> {selectedPatient.mobile_number}</p>
                                     {/* Add more details as necessary */}
                                 </>
                             ) : (
@@ -66,6 +68,83 @@ function PatientList() {
 
                 </div>
             </div>
+            <div className="Upatient-vital">
+                <h2 style={{paddingLeft:"160px",paddingTop:"15px",fontFamily:"sans-serif"}}>Vital Status</h2>
+                     
+                      {selectedPatient ? (
+                                <>
+                                    <p><strong>Heart Rate:</strong> {selectedPatient.full_name}</p>
+                                    <p><strong>Weight:</strong> {selectedPatient.address}</p>
+                                    <p><strong>Blood Pressure:</strong> {selectedPatient.mobile_number}</p>
+                                    <p><strong>Temperature:</strong> {selectedPatient.mobile_number}</p>
+                                    <p><strong>Respiratory Rate:</strong> {selectedPatient.mobile_number}</p>
+                                    <p><strong>Oxygen Saturation  :</strong> {selectedPatient.mobile_number}</p>
+
+                                    {/* Add more details as necessary */}
+                                </>
+                            ) : (
+                                <p>No patient details available.</p>
+                            )}
+                
+                    
+            </div>
+            <div className="Upatient-vital">
+                <h2 style={{paddingLeft:"160px",paddingTop:"15px",fontFamily:"sans-serif"}}>Visit History</h2>
+                     
+                      {selectedPatient ? (
+                                <>
+                                    <p><strong>Date:</strong> {selectedPatient.full_name}</p>
+                                    <p><strong>Doctor:</strong> {selectedPatient.address}</p>
+                                    <p><strong>Reason For Visit:</strong> {selectedPatient.mobile_number}</p>
+                                    <p><strong>Summary:</strong> {selectedPatient.mobile_number}</p>
+                                     
+
+                                    {/* Add more details as necessary */}
+                                </>
+                            ) : (
+                                <p>No patient details available.</p>
+                            )}
+                
+                    
+            </div>
+            <div className="Upatient-vital">
+                <h2 style={{paddingLeft:"150px",paddingTop:"15px",fontFamily:"sans-serif"}}>Lab Results</h2>
+                     
+                      {selectedPatient ? (
+                                <>
+                                    <button className="resultBtn"></button>
+                                    <button className="resultBtn"></button>
+                                    <button className="resultBtn"></button>
+
+                                     
+
+                                    {/* Add more details as necessary */}
+                                </>
+                            ) : (
+                                <p>No patient details available.</p>
+                            )}
+                
+                    
+            </div>
+            <div className="Upatient-vital">
+                <h2 style={{paddingLeft:"160px",paddingTop:"15px",fontFamily:"sans-serif"}}>Medications</h2>
+                     
+                      {selectedPatient ? (
+                                <>
+                                    <button className="resultBtn">fhw</button>
+                                    <button className="resultBtn"></button>
+                                    <button className="resultBtn"></button>
+                                     
+
+                                    {/* Add more details as necessary */}
+                                </>
+                            ) : (
+                                <p>No patient details available.</p>
+                            )}
+                
+                    
+            </div>
+             
 
         </div>
        
