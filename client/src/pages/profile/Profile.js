@@ -47,6 +47,19 @@ function Profile() {
     },
   });
 
+  function AddMediInfoPage() {
+    navigate("/profile/AddMediInfo", { state: { full_name: firstName,email: email} });
+  }
+
+  function AddVitalStatusPage() {
+    navigate("/patientList/AddPatient");
+  }
+
+  function AddVisitHistoryPage() {
+    navigate("/patientList/AddPatient");
+  }
+
+
   const [firstName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -204,6 +217,19 @@ function Profile() {
 
       {user.role === USER_ROLES.PATIENT && user.showQR && (
         <>
+        <div className="Pcontainer">
+            <button className="PmediInfo-btn" onClick={AddMediInfoPage} >Medical Information</button>
+            <button className="Pvitalsts-btn" onClick={AddVitalStatusPage}>Vital Status</button>
+            <button className="Pvisithistry-btn" onClick={AddVisitHistoryPage}>Visit History</button>
+
+        </div >
+        <div className="Infocontainer">
+        <h3 style={{paddingLeft:"450px",paddingTop:"5px"}}>Medical Information</h3>
+        <div className="Info">
+        <p><strong>Email:</strong> {email}</p>
+        </div>
+         </div>
+
           <h1 className="qr_topic">Scan QR Code</h1>
           <div className="qr">
             <QRCode

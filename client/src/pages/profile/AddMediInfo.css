@@ -1,0 +1,102 @@
+/* common styling */
+
+.mediInfo-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+   
+  .mediInfo-primary-button {
+  
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 91%;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    border-radius: 5px;
+    border: none  !important;
+    cursor: pointer;
+   
+  }
+  
+  .mediInfo-primary-button:hover {
+  
+    background-color: rgb(73, 72, 72);
+  
+  }
+   .mediInfo-bg-image {
+  
+    background-image: url(../../images/record/mediInfo_bg.jpg);
+    width: 100%;
+    min-height: 1500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+   
+  .mediInfo-authentication {
+
+    height: 190vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    padding-right: 200px;
+    padding-top: 10%;
+  
+  }
+  
+  .mediInfo-authentication-form {
+
+    background-color: rgba(175, 175, 175, 0.353);
+    backdrop-filter:blur(30px);
+    width: 500px;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: none  !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+  }
+  
+  .mediInfo-authentication .card-title {
+    text-align: center;
+    color: black;
+ 
+  }
+  
+  /* antd override */
+  .mediInfo-signup_input  {
+    background-color: white !important;
+    border: white !important;
+    height: 50px;
+    color: black;
+    font-weight: bold;
+  }
+    
+  .mediInfo-signup_input:focus {
+    
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: rgb(202, 201, 201) !important;
+  }
+  
+  .mediInfo-ant-form-item {
+    margin: 10px 0 !important;
+    padding: 0 20px !important;
+    font-weight: bold;
+  
+  }
+  
+  .mediInfo-ant-input {
+  
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+ 
