@@ -20,6 +20,8 @@ function Profile() {
   const [image, setImage] = useState("");
   const [file, setFile] = useState("");
   const [percent, setPercent] = useState(0);
+  const [selectedTab, setSelectedTab] = useState("Personal Information"); // State to track selected section
+
 
   // Get user data from the auth store
   const user = useAuthStore((state) => state.user);
@@ -55,6 +57,19 @@ function Profile() {
       errorMessage("Error", err.response.data.message);
     },
   });
+
+  function AddMediInfoPage() {
+    navigate("/profile/AddMediInfo", { state: { full_name: firstName,email: email} });
+    setSelectedTab("Personal Information");
+  }
+
+  function AddVitalStatusPage() {
+     setSelectedTab("Vital Status");
+  }
+
+  function AddVisitHistoryPage() {
+     setSelectedTab("Visit History");
+  }
 
   // State variables for controlled inputs
   const [firstName, setFullName] = useState("");
@@ -110,6 +125,47 @@ function Profile() {
   if (isError) return <p>Error loading profile data</p>;
 
   const qrCodeUrl = `http://localhost:3000/medical-records/${user._id}`;
+
+  const renderContent = () => {
+    switch (selectedTab) {
+      case "Personal Information":
+        return  (
+          <div className="Info">
+        <p><strong>Email:</strong> {email}</p>
+        <p><strong>Guradian Name:</strong> {email}</p>
+        <p><strong>Guradian No:</strong> {email}</p>
+        <p><strong>Height:</strong> {email}</p>
+        <p><strong>Weight:</strong> {email}</p>
+        <p><strong>Age:</strong> {email}</p>
+        <p><strong>Gender:</strong> {email}</p>
+  
+        </div>
+        )
+      case "Vital Status":
+        return (
+          <div className="Info">
+        <p><strong>Heart Rate:</strong> {email}</p>
+        <p><strong>Temperature:</strong> {email}</p>
+        <p><strong>Blood Pressure:</strong> {email}</p>
+        <p><strong>Respiratory Rate:</strong> {email}</p>
+        <p><strong>Oxygen Saturation:</strong> {email}</p>
+    
+        </div>
+        )
+      case "Visit History": 
+        return (
+          <div className="Info">
+        <p><strong>Date:</strong> {email}</p>
+        <p><strong>Doctor:</strong> {email}</p>
+        <p><strong>Reason for visit:</strong> {email}</p>
+        <p><strong>Summary:</strong> {email}</p>
+     
+        </div>
+        )
+      default:
+        return null;
+    }
+  };
 
   return (
     <div>
@@ -228,8 +284,21 @@ function Profile() {
         </div>
       </div>
 
-      {user.role === USER_ROLES.PATIENT && user.showQR && (
+      {user.role === USER_ROLES.PATIENT && (
         <>
+        <div className="Pcontainer">
+            <button className="PmediInfo-btn" onClick={AddMediInfoPage} >Personal Information</button>
+            <button className="Pvitalsts-btn" onClick={AddVitalStatusPage}>Vital Status</button>
+            <button className="Pvisithistry-btn" onClick={AddVisitHistoryPage}>Visit History</button>
+
+        </div >
+        <div className="Infocontainer">
+        <h2 style={{ paddingLeft: "450px", paddingTop: "5px" }}>
+              {selectedTab}
+        </h2>
+        <div className="Info">{renderContent()}</div>
+        
+         </div>
           <h1 className="qr_topic">Scan QR Code</h1>
           <div className="qr">
             <div>

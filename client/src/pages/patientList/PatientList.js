@@ -20,33 +20,17 @@ function PatientList() {
     navigate("/patientList/AddPatient");
   }
 
+  function handlePatentRecords(patientId){
+    navigate(`/patientList/PatientRecords/${patientId}`);
+
+  }
+
   // Destructure data, isLoading, and isError from the useUserData hook
   const { data: users, isLoading, isError } = useUsersData(USER_ROLES.PATIENT);
 
   // State for search term and sorted order
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
-
-  // Check if user has staff role
-  if (user.role !== USER_ROLES.STAFF) {
-    return (
-      <div>
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-          <h1>You are not authorized to view this page</h1>
-        </div>
-      </div>
-    );
-  }
-
-  // Function to handle search term input
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  // Function to toggle sorting order by ID
-  const handleSortById = () => {
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  };
 
   // Filtered and sorted users based on search term and sort order
   const filteredAndSortedUsers = users?.data?.users
@@ -62,6 +46,80 @@ function PatientList() {
         return b._id.localeCompare(a._id);
       }
     });
+
+     // Function to handle search term input
+  const manageSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Check if user has staff role
+  if (user.role !== USER_ROLES.STAFF) {
+    return (
+      <div>
+        <div>
+          {filteredAndSortedUsers && filteredAndSortedUsers.length > 0 ? (
+            <div className="Upatient-list-container">
+              <h2>Patient List</h2>
+              <input style={{marginLeft:"740px",marginTop:"5px",marginBottom:"5px"}}
+          className="patient-filter-search"
+          placeholder="Search by Name or ID"
+          type="text"
+          value={searchTerm}
+          onChange={manageSearch}
+        />
+        <button className="patient-filter-search-btn" onClick={manageSearch}>
+          Clear Search
+          </button>
+              <table className="Upatient-table">
+                <thead>
+                  <tr>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Date</th>
+                    <th>Mobile Number</th>
+                    <th>Address</th>
+                    <th>Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Loop through the filtered and sorted users data */}
+                  {filteredAndSortedUsers.map((user) => (
+                    <tr key={user._id}>
+                      <td>{user._id}</td>
+                      <td>{user.full_name}</td>
+                      <td>{new Date(user.createdAt).toLocaleDateString()}</td>
+                      <td>{user.mobile_number}</td>
+                      <td>{user.address}</td>
+                      <td>
+                        <button className="Upatient-records-button"  onClick={() => handlePatentRecords(user._id)}>Patient Records</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              
+            </div>
+          ) : (
+            !isLoading && <p>No patients found</p>
+          )}
+        </div>
+
+      </div>
+    );
+  }
+
+  // Function to handle search term input
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Function to toggle sorting order by ID
+  const handleSortById = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
+
+
 
   return (
     <div className="patient-list-container">
