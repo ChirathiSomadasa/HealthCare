@@ -29,7 +29,7 @@
   }
    .mediInfo-bg-image {
   
-    background-image: url(../../images/record/mediInfo_bg.jpg);
+    background-image: url(../../images/record/login.jpg);
     width: 100%;
     min-height: 1500px;
     background-position: center;
@@ -40,7 +40,7 @@
    
   .mediInfo-authentication {
 
-    height: 190vh !important;
+    height: 200vh !important;
     display: flex;
     align-items: center;
     justify-content: center;

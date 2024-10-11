@@ -13,6 +13,9 @@ function AddMediInfo() {
     var navigate = useNavigate();
     const location = useLocation(); // Get the state from navigation
     const { full_name ,email} = location.state || {}; // Destructure the passed state
+    const [recordDetails, setRecordDetails] = useState(null);
+
+    
 
 
     const { mutate, isLoading } = useMutation({
@@ -27,13 +30,54 @@ function AddMediInfo() {
         },
     });
 
-    const handleSubmit = (values) => {
-        const data = {
-            ...values,
-            profile_pic: "https://picsum.photos/200",
-        };
-        mutate(data);
+
+    const handleSubmit = async (values) => {
+        try {
+            const response = await axios.post("http://localhost:5003/addMedicalInfo", values);
+            successMessage("Success", response.data.message, () => {
+                navigate("/Profile");
+            });
+        } catch (err) {
+            errorMessage("Error", err.response?.data?.message || "An error occurred");
+        }
     };
+    
+    
+    
+
+      // State variables for controlled inputs
+  const [guradianname, setGuradianName] = useState("");
+  const [guradianMNo, setGuradianMNo] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [age, setAge] = useState("");
+  const [bloodgroup, setBloodGroup] = useState("");
+  const [heartrate, setHeartRate] = useState("");
+  const [bloodpressure, setBloodPressure] = useState("");
+  const [temperarture, setTemperature] = useState("");
+  const [oxygensaturation, setOxygenSaturation] = useState("");
+  const [respiratoryrate, setRespiratoryRate] = useState("");
+  const [gender, setGender] = useState("");
+
+  // Update state variables when recordDetails is loaded or changes
+useEffect(() => {
+    if (recordDetails) {
+      const { Record, user } = recordDetails.data;
+  
+      setGuradianName(Record?.guardian_name || "");
+      setGuradianMNo(Record?.guardian_Mno || "");
+      setHeight(Record?.height || "");
+      setWeight(Record?.weight || "");
+      setAge(Record?.age || "");
+      setBloodGroup(Record?.blood_group || "");
+      setHeartRate(Record?.heart_rate || "");
+      setBloodPressure(Record?.blood_pressure || "");
+      setTemperature(Record?.temperature || "");
+      setOxygenSaturation(Record?.oxygen_saturation || "");
+      setRespiratoryRate(Record?.respiratory_rate || "");
+      setGender(Record?.gender || "");
+    }
+  }, [recordDetails]);
 
 
     return (
@@ -70,7 +114,7 @@ function AddMediInfo() {
                         </Form.Item>
                         <Form.Item
                             label="Guardian Contact No"
-                            name="guradian_no"
+                            name="guradian_Mno"
                             rules={[
                                 {
                                     required: true,
@@ -177,7 +221,7 @@ function AddMediInfo() {
                         <Form.Item
                             label="Respiratory Rate"
                             name="respiratory_rate"
-                            
+                             
                         >
                             <Input className="mediInfo-signup_input" placeholder="Respiratory_Rate" />
                         </Form.Item>
