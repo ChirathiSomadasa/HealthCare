@@ -179,9 +179,6 @@ function SignUp() {
             </Form.Item>
 
 
-            <Checkbox value="physicalCard">Do you request Physical Health Card?</Checkbox>
-
-            <button className="primary-button" type="submit" >SIGN UP</button>
             <Form.Item name="physicalCard" valuePropName="checked">
               <Checkbox value="physicalCard">
                 Do you request Physical Health Card?
