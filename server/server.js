@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 require('dotenv').config()
 const dbConfig = require("./config/dbConfig");
 var User = require("./models/User");
+const doctorRoutes = require('./routes/doctorRoutes');
 
 var userRoute = require("./routes/user_route");
 
@@ -35,7 +36,9 @@ app.use(async (req, res, next) => {
     }
 });
 
+// Routes
 app.use("/user", userRoute);
+app.use('/api/doctors', doctorRoutes);
 
 const port = process.env.PORT || 5002;
 app.listen(port, () => console.log(`Node server started at port ${port}`));
