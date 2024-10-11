@@ -312,14 +312,15 @@
 
 .Infocontainer{
   width: 1100px;
-    height:160px;
+    height:auto;
     background-color: rgba(202, 204, 204, 0.575);
     margin-top: 100px;
      margin-left: 120px;
     margin-right: 120px;
     border-radius: 10px;
+    padding-bottom: 20px;
 }
 
 .Info{
-  padding-left: 10px;
+  padding-left: 30px;
 }

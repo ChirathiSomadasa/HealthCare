@@ -40,7 +40,7 @@ function AddMediInfo() {
         <div className="mediInfo-bg-image">
             <div className="mediInfo-authentication">
                 <div className="mediInfo-authentication-form card p-2">
-                    <h1 className="mediInfo-card-title">Add Medical Information</h1>
+                    <h1 className="mediInfo-card-title">Add Information</h1>
                     <Form layout="vertical" onFinish={handleSubmit} initialValues={{ full_name,email }}>
                         <Form.Item
                             label="Full Name"
