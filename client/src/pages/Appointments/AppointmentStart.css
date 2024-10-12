@@ -26,14 +26,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(../../images/Appointments/healthcae1.jpg) no-repeat center center; 
+    background: url(../../images/Appointments/bg.jpg) no-repeat center center; 
     background-size: cover;
-    filter: blur(10px); 
     z-index: -1; 
 }
 .appointment_centered {
     position: absolute;
-    top: 25%;
+    top: 60%;
     left: 25%;
     font-size: 30px;
     color: white;
@@ -42,29 +41,29 @@
 }
 
 
-.btn {
+.btn-book-appointment-btn {
     background-color: #4A90E2;
     color: #fff;
     border: none;
-    padding: 12px 24px;
+    padding: 18px 28px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 19px;
     cursor: pointer;
     margin-bottom: 20px;
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #357ABD;
+.btn-book-appointment-btn:hover {
+    background-color: #04027f;
 }
 
-.quick-booking h2 {
-    font-size: 24px;
+.Appointment-buttonTopic {
+    font-size: 26px;
     color: #333;
     margin-bottom: 10px;
 }
 
-.quick-booking p {
+.appointment-booking p {
     font-size: 14px;
     color: #666;
     margin-bottom: 10px;

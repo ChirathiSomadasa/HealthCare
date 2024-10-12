@@ -3,7 +3,7 @@
     width: 100%;
     padding: 20px;
     text-align: center;
-    background-color: #f4f8fc;
+    background-color: #d6e8fa98;
 }
 
 /* Header section */
@@ -94,8 +94,95 @@
 }
 
 
-.service-box p {
+.service-description {
     font-size: 16px;
     margin-top: 10px;
     color: #333;
+}
+
+.app-container {
+    max-width: 600px;
+    margin: 20px auto;
+    margin-left: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.service-topic{
+    font-size:20px;
+    font-style: bold;
+    margin-top: 10px;
+    color: #1f99af;
+}
+
+.doctor-results-container {
+    max-width: 600px;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.doctor-results {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    gap: 15px; /* Space between doctor cards */
+}
+
+.doctor-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    background-color: #fff; /* Ensure background for cards */
+}
+
+.doctor-card:hover {
+    transform: scale(1.02);
+}
+
+.doctor-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.doctor-specialization,
+.doctor-hospital,
+.doctor-gender {
+    margin: 5px 0;
+}
+
+.available-appointments-header {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.appointments-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Reset default margin */
+}
+
+.appointment-item {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #e7f4ff;
+    border-radius: 4px;
+}
+
+.btn-channel-now {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Add space above button */
+}
+
+.btn-channel-now:hover {
+    background-color: #0056b3;
 }

@@ -13,14 +13,14 @@ const AppointmentStart = () => {
         <div className="appointment-container">
             <div className='parallax'>
                 <div className="appointment_centered">
-                    <h1>Nourish the earth, see your harvest’s worth.</h1>
+                    <h1>Your Wellness, One Click Away!</h1>
                 </div>
             </div>
             
-            <div className="quick-booking">
-                <h2>Quick Booking</h2>
-                <button className="btn quick-book-btn" onClick={handleQuickBook}>
-                    Quick Book
+            <div className="Appointment-booking">
+                <h2 className="Appointment-buttonTopic">Schedule My Appointment</h2>
+                <button className="btn-book-appointment-btn" onClick={handleQuickBook}>
+                     Book Now
                 </button>
             </div>
         </div>

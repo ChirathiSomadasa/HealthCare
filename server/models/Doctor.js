@@ -1,5 +1,21 @@
 const mongoose = require('mongoose');
 
+const appointmentSchema = new mongoose.Schema({
+    date: {
+        type: String, // e.g., "2023-10-15"
+        required: true
+    },
+    time: {
+        type: String, // e.g., "10:00 AM"
+        required: true
+    },
+    fee: {
+        type: Number, // Appointment fee
+        required: true
+    },
+
+});
+
 const doctorSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -13,8 +29,8 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    availableDates: {
-        type: [String], // Store dates as strings for simplicity
+    availableAppointments: {
+        type: [appointmentSchema], // Array of appointment objects
         required: true
     },
     gender: {
