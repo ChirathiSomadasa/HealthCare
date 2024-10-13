@@ -45,6 +45,9 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const ContactModel = require('./models/Record');
+
+
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
@@ -76,3 +79,33 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+
+  
+// Fetch all contacts
+app.get('/', async (req, res) => {
+  try {
+      const contacts = await ContactModel.find({});
+      res.status(200).json(contacts);
+  } catch (err) {
+      res.status(500).json({ error: 'Error fetching problems' });
+  }
+});
+
+app.post("/AddProblem", async (req, res) => {
+  console.log("Received data:", req.body); // Log the incoming data
+  try {
+      const newProblem = new ContactModel(req.body);
+      await newProblem.save();
+      res.status(200).json({ message: 'Problem added successfully!', data: newProblem });
+  } catch (err) {
+      console.error(err); // Log the error to see the stack trace
+      res.status(500).json({ error: 'Error adding problem' });
+  }
+});
+
+
+
+
+
+ 

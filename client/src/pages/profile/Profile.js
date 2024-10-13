@@ -59,7 +59,7 @@ function Profile() {
   });
 
   function AddMediInfoPage() {
-    navigate("/profile/AddMediInfo", { state: { full_name: firstName,email: email} });
+    navigate("/profile/AddMediInfo", { state: { full_name: firstName} });
     setSelectedTab("Personal Information");
   }
 
@@ -131,34 +131,34 @@ function Profile() {
       case "Personal Information":
         return  (
           <div className="Info">
-        <p><strong>Email:</strong> {email}</p>
-        <p><strong>Guradian Name:</strong> {email}</p>
-        <p><strong>Guradian No:</strong> {email}</p>
-        <p><strong>Height:</strong> {email}</p>
-        <p><strong>Weight:</strong> {email}</p>
-        <p><strong>Age:</strong> {email}</p>
-        <p><strong>Gender:</strong> {email}</p>
+        <p><strong>Email:</strong>  </p>
+        <p><strong>Guradian Name:</strong>  </p>
+        <p><strong>Guradian No:</strong> {}</p>
+        <p><strong>Height:</strong> {  }</p>
+        <p><strong>Weight:</strong> {}</p>
+        <p><strong>Age:</strong> {  }</p>
+        <p><strong>Gender:</strong> { }</p>
   
         </div>
         )
       case "Vital Status":
         return (
           <div className="Info">
-        <p><strong>Heart Rate:</strong> {email}</p>
-        <p><strong>Temperature:</strong> {email}</p>
-        <p><strong>Blood Pressure:</strong> {email}</p>
-        <p><strong>Respiratory Rate:</strong> {email}</p>
-        <p><strong>Oxygen Saturation:</strong> {email}</p>
+        <p><strong>Heart Rate:</strong> {  }</p>
+        <p><strong>Temperature:</strong> {}</p>
+        <p><strong>Blood Pressure:</strong> { }</p>
+        <p><strong>Respiratory Rate:</strong> { }</p>
+        <p><strong>Oxygen Saturation:</strong> { }</p>
     
         </div>
         )
       case "Visit History": 
         return (
           <div className="Info">
-        <p><strong>Date:</strong> {email}</p>
-        <p><strong>Doctor:</strong> {email}</p>
-        <p><strong>Reason for visit:</strong> {email}</p>
-        <p><strong>Summary:</strong> {email}</p>
+        <p><strong>Date:</strong> { }</p>
+        <p><strong>Doctor:</strong> { }</p>
+        <p><strong>Reason for visit:</strong> { }</p>
+        <p><strong>Summary:</strong> { }</p>
      
         </div>
         )
