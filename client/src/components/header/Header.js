@@ -60,7 +60,7 @@ function Header() {
             <div className="header-nav">
                 <HeaderNavButton id="" activeId={activePage} name="Home" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="about" activeId={activePage} name="About" onClick={(id) => { navItemClick(id) }} />
-                <HeaderNavButton id="appointments" activeId={activePage} name="Appointments" onClick={(id) => { navItemClick(id) }} />
+                <HeaderNavButton id="appointmentstrt" activeId={activePage} name="Appointments" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="payment" activeId={activePage} name=" Payment" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="contact" activeId={activePage} name="Contact" onClick={(id) => { navItemClick(id) }} />
             </div>

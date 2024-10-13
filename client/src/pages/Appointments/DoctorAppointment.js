@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './DoctorAppointment.css';
+import { useNavigate } from 'react-router-dom';
 import Icon1 from '../../images/Appointments/img1.png';
 import Icon2 from '../../images/Appointments/img2.png';
 import Icon3 from '../../images/Appointments/img3.png';
@@ -17,22 +18,12 @@ const DoctorAppointment = () => {
     const [date, setDate] = useState('');
     const [doctors, setDoctors] = useState([]);
     const [error, setError] = useState('');
-
-    useEffect(() => {
-        const fetchDoctors = async () => {
-            try {
-                const response = await axios.get('http://localhost:5002/api/doctors/getAllDoc');
-                setDoctors(response.data);
-            } catch (error) {
-                setError('Error fetching doctors');
-            }
-        };
-
-        fetchDoctors();
-    }, []);
+    const [searchPerformed, setSearchPerformed] = useState(false);
+    const navigate = useNavigate();
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        setSearchPerformed(true);
 
         try {
             const response = await axios.get('http://localhost:5002/api/doctors/search', {
@@ -40,32 +31,44 @@ const DoctorAppointment = () => {
                     name: doctorName,
                     specialization,
                     hospital,
-                    date
+                    date,
                 }
             });
 
-            if (response.data.message) {
-                setError(response.data.message);
+            if (response.data.length === 0) {
+                setError('No matching doctors found. Please try different criteria.');
                 setDoctors([]);
             } else {
                 setError('');
                 setDoctors(response.data);
             }
         } catch (error) {
-            setError('Error fetching doctors');
+            setError('Error fetching specific doctors');
         }
     };
 
+    const formatTime = (time) => {
+        const date = new Date(time);
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const formattedHours = hours % 12 || 12; // convert to 12-hour format
+        const ampm = hours < 12 ? 'AM' : 'PM';
+        return `${formattedHours}:${minutes < 10 ? '0' + minutes : minutes} ${ampm}`;
+    };
+
+    const handleChannelNow = (doctor, appointment) => {
+        navigate(`/addAppointment?doctorId=${doctor._id}&doctorName=${doctor.name}&specialization=${doctor.specialization}&appointmentDate=${appointment.date}&appointmentTime=${appointment.time}`);
+    };
+
     return (
-        <div className="appointment-page-container">
-            <div className="appointment-header">
-                <h1>Book an Appointment at Aster Medcity</h1>
-                <p>Cheranalloor, Ernakulam</p>
+        <div className="Dappointment-page-container">
+            <div className="Dappointment-header">
+                <h1 className="Dappointment-heading">Book an Appointment at HealthCare</h1>
             </div>
 
-            <div className="appointment-search-form">
+            <div className="Dappointment-search-form">
                 <form onSubmit={handleSearch}>
-                    <input
+                    <input 
                         type="text"
                         placeholder="Search Doctor Name"
                         value={doctorName}
@@ -80,8 +83,12 @@ const DoctorAppointment = () => {
                         required
                     >
                         <option value="">Select Specialization</option>
+                        <option value="EmergencyMedicine">Emergency Medicine</option>
+                        <option value="Dermatology">Dermatology</option>
                         <option value="Cardiology">Cardiology</option>
-                        <option value="Orthopedics">Orthopedics</option>
+                        <option value="FamilyMedicine">Family Medicine</option>
+                        <option value="InternalMedicine">Internal Medicine</option>
+                        <option value="ObstetricAndGynocology">Obstetric and Gynocology</option>
                         <option value="Neurology">Neurology</option>
                     </select>
 
@@ -92,8 +99,16 @@ const DoctorAppointment = () => {
                         required
                     >
                         <option value="">Select Hospital</option>
-                        <option value="Aster Medcity">Aster Medcity</option>
-                        <option value="Apollo Hospital">Apollo Hospital</option>
+                        <option value="LankaHospital">Lanka Hospital</option>
+                        <option value="DurdansHospital">Durdans Hospital</option>
+                        <option value="NawalokaHospital">Nawaloka Hospital</option>
+                        <option value="AsiriHospital">Asiri Hospital</option>
+                        <option value="WesternHospital">Western Hospital</option>
+                        <option value="NinewellsHospital">Ninewells Hospital</option>
+                        <option value="Dr.NewilFernandoHospital">Dr.NewilFernando Hospital</option>
+                        <option value="HemasHospital">Hemas Hospital</option>
+                        <option value="NawinnaHospital">Nawinna Hospital</option>
+                        <option value="CooperativeHospital">Cooperative Hospital</option>
                     </select>
 
                     <input
@@ -113,28 +128,36 @@ const DoctorAppointment = () => {
             </div>
 
             {error && <div className="error-message">{error}</div>}
-            <div className="doctor-results-container">
-                <h2 className="results-header">Available Doctors</h2>
-                <div className="available-results">
-                    {doctors.map((doctor) => (
-                        <div key={doctor._id} className="doctor-card">
-                            <h3 className="doctor-name">{doctor.name}</h3>
-                            <p className="doctor-specialization">{doctor.specialization}</p>
-                            <p className="doctor-hospital">{doctor.hospital}</p>
-                            <p className="doctor-gender">Gender: {doctor.gender}</p>
-                            <p className="available-appointments-header">Available Appointments:</p>
-                            <ul className="appointments-list">
-                                {doctor.availableAppointments.map((appointment, index) => (
-                                    <li key={index} className="appointment-item">
-                                        {appointment.date} at {appointment.time} - Fee: ${appointment.fee}
-                                    </li>
-                                ))}
-                            </ul>
-                            <button className="btn-channel-now">Channel Now</button>
-                        </div>
-                    ))}
+            
+            {searchPerformed && doctors.length > 0 && (
+                <div className="doctor-results-container">
+                    <h2 className="results-header">Available Doctors</h2>
+                    <div className="available-results">
+                        {doctors.map((doctor) => (
+                            <div key={doctor._id} className="doctor-card">
+                                <h3 className="doctor-name">{doctor.name}</h3>
+                                <p className="doctor-specialization">{doctor.specialization}</p>
+                                <p className="doctor-hospital">{doctor.hospital}</p>
+                                <p className="doctor-gender">Gender: {doctor.gender}</p>
+                                <p className="available-appointments-header">Available Appointments:</p>
+                                <ul className="appointments-list">
+                                    {doctor.availableAppointments.map((appointment, index) => (
+                                        <li key={index} className="appointment-item">
+                                            {appointment.date} at {formatTime(appointment.time)} - Fee: RS{appointment.fee}
+                                            <button
+                                                className="btn-channel-now"
+                                                onClick={() => handleChannelNow(doctor, appointment)}
+                                            >
+                                                Channel Now
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
 
             <div className="services-container">
                 <div className="app-container">

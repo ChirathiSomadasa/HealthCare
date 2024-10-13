@@ -6,7 +6,7 @@ const appointmentSchema = new mongoose.Schema({
         required: true
     },
     time: {
-        type: String, // e.g., "10:00 AM"
+        type: Date, 
         required: true
     },
     fee: {

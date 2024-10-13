@@ -1,6 +1,8 @@
 const express = require('express');
 const Doctor = require('../models/Doctor');
 const router = express.Router();
+const cors = require('cors');
+router.use(cors());
 
 // Add a doctor to the database
 router.post('/add', async (req, res) => {
@@ -31,34 +33,69 @@ router.get('/getAllDoc', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
-
-// Search for doctors
+// Search doctors based on input criteria
 router.get('/search', async (req, res) => {
     const { name, specialization, hospital, date } = req.query;
-    try {
-        const query = {};
 
-        // Build search criteria
-        if (name) query.name = new RegExp(name, 'i');
-        if (specialization) query.specialization = new RegExp(specialization, 'i');
-        if (hospital) query.hospital = new RegExp(hospital, 'i');
-        
-        // If a date is provided, filter by available appointments
-        if (date) {
-            query['availableAppointments.date'] = date;
+    try {
+        // Build the query object
+        let query = {};
+
+        // If name is provided, add it to the query
+        if (name) {
+            query.name = { $regex: name, $options: 'i' }; // Case-insensitive search
         }
 
+        // If specialization is provided, add it to the query
+        if (specialization) {
+            query.specialization = specialization;
+        }
+
+        // If hospital is provided, add it to the query
+        if (hospital) {
+            query.hospital = hospital;
+        }
+
+        // Find doctors that match the query
         const doctors = await Doctor.find(query);
 
-        if (doctors.length > 0) {
-            return res.status(200).json(doctors);
-        } else {
-            return res.status(404).json({ message: 'No doctors found matching the criteria' });
+        if (doctors.length === 0) {
+            // If no exact match, perform a broader search
+            const nameSearch = name ? await Doctor.find({ name: { $regex: name, $options: 'i' } }) : [];
+            const specializationSearch = specialization ? await Doctor.find({ specialization }) : [];
+            const results = [...new Set([...nameSearch, ...specializationSearch])]; 
+
+            return res.status(200).json(results);
         }
+
+        // If matching doctors found
+        return res.status(200).json(doctors);
+    } catch (error) {
+        console.error('Error fetching doctors:', error);
+        return res.status(500).json({ message: 'Error fetching doctors' });
+    }
+});
+
+router.get('/:Docid', async (req, res) => {
+    try {
+        const doctor = await Doctor.findById(req.params.Docid);  // Use Docid as per your route definition
+
+        if (!doctor) {
+            return res.status(404).json({ message: 'Doctor not found' });
+        }
+
+        res.status(200).json(doctor);
     } catch (error) {
         console.error(error);
+
+        // Check if the error is related to an invalid ObjectId
+        if (error.kind === 'ObjectId') {
+            return res.status(400).json({ message: 'Invalid doctor ID' });
+        }
+
         res.status(500).json({ message: 'Server error' });
     }
 });
+
 
 module.exports = router;

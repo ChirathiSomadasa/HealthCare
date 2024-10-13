@@ -8,6 +8,10 @@ import Profile from './pages/profile/Profile';
 import AppointmentStart from './pages/Appointments/AppointmentStart';
 import DoctorAppointment from './pages/Appointments/DoctorAppointment';
 import DoctorEntryForm from './pages/Appointments/DoctorEntryForm';
+import AddAppointment from './pages/Appointments/addAppointment';
+import Confirmation from './pages/Appointments/Confirmation';
+
+
 
 function App() {
   return (
@@ -18,9 +22,13 @@ function App() {
     <Route path="/login" element={<Login />} />
     <Route path="/signout" element={<SignOut />} />
     <Route path="/profile" element={<Profile />} />
-    <Route path = "/appointments" element={<AppointmentStart/>}/>
+    <Route path = "/appointmentstrt" element={<AppointmentStart/>}/>
     <Route path = "/Doctorappointments" element={<DoctorAppointment/>}/>
       <Route path = "/DoctorEntry" element={<DoctorEntryForm/>}/>
+      <Route path = "/addAppointment" element={<AddAppointment/>}/>
+      <Route path = "/confirmation" element={<Confirmation/>}/>
+     
+     
     </Routes>
   </BrowserRouter>
   );
