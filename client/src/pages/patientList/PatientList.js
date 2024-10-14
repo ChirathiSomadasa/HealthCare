@@ -96,24 +96,24 @@ function PatientList() {
         <table className="patient-table">
           <thead>
             <tr>
-              <th>Patient ID</th>
-              <th>Patient Name</th>
-              <th>Date</th>
-              <th>Request Digital Health Card</th>
-              <th>Request Physical Health Card</th>
-              <th>Generate Health Card</th>
+              <th className="pth">Patient ID</th>
+              <th className="pth">Patient Name</th>
+              <th className="pth">Date</th>
+              <th className="pth">Request Digital Health Card</th>
+              <th className="pth">Request Physical Health Card</th>
+              <th className="pth">Generate Health Card</th>
             </tr>
           </thead>
           <tbody>
             {/* Loop through the filtered and sorted users data */}
             {filteredAndSortedUsers.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.full_name}</td>
-                <td>{new Date(user.createdAt).toLocaleDateString()}</td>
-                <td>{user.digitalCard ? "Yes" : "No"}</td>
-                <td>{user.physicalCard ? "Yes" : "No"}</td>
-                <td>
+                <td className="ptd">{user._id}</td>
+                <td className="ptd">{user.full_name}</td>
+                <td className="ptd">{new Date(user.createdAt).toLocaleDateString()}</td>
+                <td className="ptdd">{user.digitalCard ? "Yes" : "No"}</td>
+                <td className="ptdp">{user.physicalCard ? "Yes" : "No"}</td>
+                <td className="ptd">
                   <button
                     className="generate_btn"
                     onClick={() => GenerateQRPage(user._id)}
