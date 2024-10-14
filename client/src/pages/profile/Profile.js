@@ -131,34 +131,44 @@ function Profile() {
       case "Personal Information":
         return  (
           <div className="Info">
-        <p><strong>Email:</strong>  </p>
-        <p><strong>Guradian Name:</strong>  </p>
-        <p><strong>Guradian No:</strong> {}</p>
-        <p><strong>Height:</strong> {  }</p>
-        <p><strong>Weight:</strong> {}</p>
-        <p><strong>Age:</strong> {  }</p>
-        <p><strong>Gender:</strong> { }</p>
+        <p><strong>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            :&nbsp;&nbsp;&nbsp;</strong>{email}</p>
+        <p><strong>Guradian Name &nbsp;&nbsp;&nbsp; 
+            :&nbsp;&nbsp;&nbsp;</strong>Amali</p>
+        <p><strong>Guradian No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+            :&nbsp;&nbsp;&nbsp;</strong>0779479235</p>
+        <p><strong>Height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         
+            :&nbsp;&nbsp;&nbsp;</strong> 148 </p>
+        <p><strong>Weight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+            :&nbsp;&nbsp;&nbsp;</strong>60</p>
+        <p><strong>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       
+            :&nbsp;&nbsp;&nbsp;</strong>50</p>
+        <p><strong>Gender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+            :&nbsp;&nbsp;&nbsp;</strong>Female</p>
   
         </div>
         )
       case "Vital Status":
         return (
           <div className="Info">
-        <p><strong>Heart Rate:</strong> {  }</p>
-        <p><strong>Temperature:</strong> {}</p>
-        <p><strong>Blood Pressure:</strong> { }</p>
-        <p><strong>Respiratory Rate:</strong> { }</p>
-        <p><strong>Oxygen Saturation:</strong> { }</p>
+        <p><strong>Heart Rate:</strong>54</p>
+        <p><strong>Temperature:</strong> 32</p>
+        <p><strong>Blood Pressure:</strong> 34</p>
+        <p><strong>Respiratory Rate:</strong> 40</p>
+        <p><strong>Oxygen Saturation:</strong> 30</p>
     
         </div>
         )
       case "Visit History": 
         return (
           <div className="Info">
-        <p><strong>Date:</strong> { }</p>
-        <p><strong>Doctor:</strong> { }</p>
-        <p><strong>Reason for visit:</strong> { }</p>
-        <p><strong>Summary:</strong> { }</p>
+        <p><strong>Date:</strong>10/14/2024</p>
+        <p><strong>Doctor: </strong> R.M.Saman</p>
+        <p><strong>Reason for visit:</strong> headeche</p>
+        <p><strong>Summary:</strong> Normal</p>
      
         </div>
         )

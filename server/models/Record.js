@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const USER_ROLES = require("../constants/roles");
-
+ 
 const recordSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true }, // Add userId field
@@ -22,6 +21,14 @@ const recordSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+recordSchema.connect((err) => {
+  if (err) {
+      console.error('Error connecting to the database:', err.stack);
+      return;
+  }
+  console.log('Connected to the database');
+});
 
 module.exports = mongoose.model("Record", recordSchema);
  
