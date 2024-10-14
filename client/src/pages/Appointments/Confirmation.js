@@ -1,18 +1,18 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation , useNavigate} from "react-router-dom";
 import "./confirmation.css"; 
 import ConfirmImg from '../../images/Appointments/confirmation.png';
 
 const Confirmation = () => {
   const location = useLocation();
   const { appointmentDate, appointmentTime } = location.state || {};
-
+  const navigate = useNavigate();
   const handlePayNow = () => {
     alert("Redirecting to payment page...");
   };
 
   const handleViewDetails = () => {
-    alert("Viewing appointment details...");
+    navigate("/viewAllAppointments");
   };
 
   return (
