@@ -1,90 +1,89 @@
-import React from "react";
-import { Form, Input } from "antd";
-import { Link } from "react-router-dom";
-import "./Login.css";
-import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/useAuthStore";
-import { useMutation } from "@tanstack/react-query";
-import AuthAPI from "../../api/AuthAPI";
-import { errorMessage, successMessage } from "../../utils/Alert";
+import { useState } from 'react';
+import React from 'react';
+import { Form, Input } from 'antd';
+import { Link } from 'react-router-dom';
+import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 function Login() {
+
+  const [cookies, setCookies, removeCookies] = useCookies(['auth_email', 'auth_password']);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const login = useAuthStore((state) => state.login);
+  const onFinishLogin = (values) => {
+    setLoading(true);
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: AuthAPI.login,
-    onSuccess: (res) => {
-      // Set user data to global state
-      login(res.data.user, res.data.token);
-      successMessage("Success", res.data.message, () => {
-        navigate("/");
+    // Send form data to backend API
+    axios
+      .post('http://localhost:5002/user/login', values)
+      .then((response) => {
+        setLoading(false);
+        var data = response.data;
+        var status = data.status;
+        // Check the backend response
+        if (status === 'success') {
+          // Save token or user data in localStorage or context
+          localStorage.setItem('email', response.data.email); // Example: saving user email
+          // You can add more user information in localStorage if necessary
+          setCookies("auth_email", response.data.email);
+          setCookies("auth_password", response.data.password);
+          navigate('/'); // Redirect to the dashboard or homepage after successful login
+        } else if (status === 'invalid_user') {
+          const message = data.message;
+          alert(message);
+        } else {
+          alert(JSON.stringify(data));
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        alert("Error - " + error);
       });
-    },
-    onError: (err) => {
-      errorMessage("Error", err.response.data.message);
-    },
-  });
-
-  const handleSubmit = (values) => {
-    mutate(values, {
-      onSuccess: (res) => {
-        login(res.data.user, res.data.token);
-      },
-    });
   };
 
+
   return (
-    <div className="bg-image-login">
-      <div className="authentication-login">
-        <div className="authentication-form-login card p-2">
-          <h1 className="card-title">LOGIN</h1>
+    <div className='bg-image-login'>
+      <div className='authentication-login'>
+        <div className='authentication-form-login card p-2'>
+          <h1 className='card-title'>LOGIN</h1>
 
-          <Form layout="vertical" onFinish={handleSubmit}>
+          <Form layout='vertical' onFinish={onFinishLogin}>
             <Form.Item
-              label="Email"
-              name="email"
+              label='Email'
+              name='email'
               rules={[
                 {
                   required: true,
-                  message: "Please input your Email!",
+                  message: 'Please input your Email!',
                 },
               ]}
             >
-              <Input className="login_input" placeholder="Email" />
+              <Input className='login_input' placeholder='Email' />
             </Form.Item>
 
             <Form.Item
-              label="Password"
-              name="password"
+              label='Password'
+              name='password'
               rules={[
                 {
                   required: true,
-                  message: "Please input your Password!",
+                  message: 'Please input your Password!',
                 },
               ]}
             >
-              <Input.Password
-                className="login_input"
-                placeholder="Password"
-                type="password"
-              />
+              <Input.Password className='login_input' placeholder='Password' type='password' />
             </Form.Item>
 
-            <button
-              className="primary-button-login"
-              type="submit"
-              disabled={isLoading}
-            >
-              {isLoading ? "Logging in..." : "LOGIN"}
+            <button className='primary-button-login' type='submit' disabled={loading}>
+              {loading ? 'Logging in...' : 'LOGIN'}
             </button>
 
-            <p className="para">
-              Don't have an account?{" "}
-              <Link to="/signup" className="anchor">
-                SIGN UP
-              </Link>
+            <p className='para'>
+              Don't have an account? <Link to='/signup' className='anchor'>SIGN UP</Link>
             </p>
           </Form>
         </div>

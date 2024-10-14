@@ -1,254 +1,148 @@
-import React, { useState, useEffect } from "react";
-import "./Profile.css";
-import ProfileVector from "../../images/user.png";
-import Camera from "../../images/healthcard/camera.png";
-import QRImg from "../../images/healthcard/qr_img.png";
-import moment from "moment";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import React from 'react';
+import './Profile.css';
+import ProfileVector from '../../images/user.png';
+import Camera from '../../images/healthcard/camera.png';
+import { useAuthEmail, useAuthPassword } from '../../auth'
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/useAuthStore";
-import { useUserData } from "../../hooks/useUserData";
-import UserAPI from "../../api/UserAPI";
-import { useMutation } from "@tanstack/react-query";
-import { errorMessage, successMessage } from "../../utils/Alert";
-import QRCode from "react-qr-code";
-import { USER_ROLES } from "../../constants/roles";
-import { handleUpload } from "../../utils/HandleUpload";
+import moment from 'moment';
+import QRImg from '../../images/healthcard/qr_img.png';
+
 
 function Profile() {
-  const navigate = useNavigate();
 
-  const [image, setImage] = useState("");
-  const [file, setFile] = useState("");
-  const [percent, setPercent] = useState(0);
+    const authEmail = useAuthEmail();
+    const authPassword = useAuthPassword();
+    const navigate = useNavigate();
+    const [update, setUpdate] = useState(0);
+    const [profileDetails, setProfileDetails] = useState({});
 
-  // Get user data from the auth store
-  const user = useAuthStore((state) => state.user);
-  const logout = useAuthStore((state) => state.logout);
+    const [firstName, setFullName] = useState("");
+    const [address, setAddress] = useState("");
+    const [mobileNumber, setMobileNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [birthdate, setBirthDate] = useState("");
 
-  // Fetch profile data using the custom hook with the user's ID
-  const { data: profileDetails, isLoading, isError } = useUserData(user._id);
+    // Formatting birthdate using moment.js
+    const formatDate = (dateString) => {
+        return moment(dateString).format('YYYY-MM-DD');
+    };
 
-  const { mutate: updateUserMutation, isPending } = useMutation({
-    mutationFn: UserAPI.updateUser,
-    onSuccess: (res) => {
-      // Set user data to global state
-      // login(res.data.user, res.data.token);
-      successMessage("Success", res.data.message, () => {
-        // navigate("/");
-      });
-    },
-    onError: (err) => {
-      errorMessage("Error", err.response.data.message);
-    },
-  });
-
-  // delete mutation
-  const { mutate: deleteUserMutation, isPending: isDeleting } = useMutation({
-    mutationFn: UserAPI.deleteUser,
-    onSuccess: (res) => {
-      successMessage("Success", res.data.message, () => {
-        logout();
-        navigate("/");
-      });
-    },
-    onError: (err) => {
-      errorMessage("Error", err.response.data.message);
-    },
-  });
-
-  // State variables for controlled inputs
-  const [firstName, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthdate, setBirthDate] = useState("");
-  // const [profilePictureUrl, setProfilePictureUrl] = useState(ProfileVector);
-
-  // Update state variables when profileDetails is loaded or changes
-  useEffect(() => {
-    if (profileDetails) {
-      setFullName(profileDetails.data.user.full_name || "");
-      setAddress(profileDetails.data.user.address || "");
-      setMobileNumber(profileDetails.data.user.mobile_number || "");
-      setEmail(profileDetails.data.user.email || "");
-      setBirthDate(
-        profileDetails.data.user.birthdate
-          ? moment(profileDetails.data.user.birthdate).format("YYYY-MM-DD")
-          : ""
-      );
-      setImage(profileDetails.data.user.profilePic || "");
+    var profilePictureUrl = ProfileVector;
+    if (profileDetails.profile_pic != null) {
+        profilePictureUrl = "http://localhost:5002/image/" + profileDetails.profile_pic;
     }
-  }, [profileDetails]);
 
-  // Handle image upload
-  const handleImageUpload = (e) => {
-    // const file = e.target.files[0];
-    setFile(file);
-    handleUpload({ file, setPercent, setImage });
-  };
+    useEffect(() => {
+        // Fetch all predictions from the backend
+        const fetchData = async () => {
+            try {
+                const response = await axios.post('http://localhost:5002/user/profile', { auth_email: authEmail, auth_password: authPassword });
 
-  // Handle change
-  function handleChange(event) {
-    setFile(event.target.files[0]);
-  }
+                const data = response.data;
+                const status = data.status;
+                if (status === "success") {
+                    setProfileDetails(data);
 
-  const handleSubmit = () => {
-    updateUserMutation({
-      id: user._id,
-      data: {
-        full_name: firstName,
-        address,
-        mobile_number: mobileNumber,
-        email,
-        birthdate,
-        profilePic: image,
-      },
-    });
-  };
-
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error loading profile data</p>;
-
-  const qrCodeUrl = `http://localhost:3000/medical-records/${user._id}`;
-
-  return (
-    <div>
-      <div className="upper-img">
-        <div className="profile-container">
-          <div className="upper-container">
-            <div className="image-container">
-              <img
-                className="profile_img"
-                src={image || ProfileVector}
-                alt="profile"
-                height="100px"
-                width="100px"
-              />
-              <label className="camera-button" htmlFor="file-input">
-                <input
-                  id="file-input"
-                  type="file"
-                  onChange={handleChange}
-                  style={{ display: "none" }}
-                />
-                <img src={Camera} alt="camera" />
-              </label>
-              <button
-                type="button"
-                style={{
-                  // add styles here
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                  padding: "10px 24px",
-                  border: "none",
-                  width: "100%",
-                  borderRadius: "5px",
-                  // disabled styles
-                  opacity: percent === 100 ? 0.5 : 1,
-                  cursor: percent === 100 ? "not-allowed" : "pointer",
-                }}
-                onClick={handleImageUpload}
-                disabled={!file || percent === 100}
-              >
-                {
-                  // show progress when uploading
-                  percent < 100 ? `Upload ${percent}%` : "Uploaded"
+                    setFullName(data.full_name);
+                    setAddress(data.address);
+                    setMobileNumber(data.mobile_number);
+                    setEmail(data.email);
+                    setBirthDate(formatDate(data.birthdate)); // Format birthdate using moment.js
                 }
-              </button>
-            </div>
-            <div className="img_text">
-              <h1 className="pcard-title">{firstName}</h1>
-            </div>
-          </div>
-          <div className="lower_pcontainer">
-            <div className="profile_details">
-              <div className="profile_details_form card">
-                <h1 className="card_title">User Information</h1>
-                <form className="profile_form">
-                  <label>Full Name</label>
-                  <input
-                    className="profile_input"
-                    type="text"
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Full Name"
-                    value={firstName}
-                  />
-                  <label>Address</label>
-                  <input
-                    className="profile_input"
-                    type="text"
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Address"
-                    value={address}
-                  />
-                  <label>Contact Number</label>
-                  <input
-                    className="profile_input"
-                    type="text"
-                    onChange={(e) => setMobileNumber(e.target.value)}
-                    placeholder="Contact Number"
-                    value={mobileNumber}
-                  />
-                  <label>Email</label>
-                  <input
-                    className="profile_input"
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                    value={email}
-                  />
-                  <label>Birthdate</label>
-                  <input
-                    className="profile_input"
-                    type="date"
-                    onChange={(e) => setBirthDate(e.target.value)}
-                    placeholder="Birthdate"
-                    value={birthdate}
-                  />
-                  <div className="profile_btn">
-                    <button
-                      type="button"
-                      className="edit-profile"
-                      onClick={handleSubmit}
-                    >
-                      Edit Profile
-                    </button>
-                    <button
-                      type="button"
-                      className="delete"
-                      onClick={() => deleteUserMutation(user._id)}
-                    >
-                      Delete Account
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            } catch (err) {
+                alert("Error 2 - " + err);
 
-      {user.role === USER_ROLES.PATIENT && user.showQR && (
-        <>
-          <h1 className="qr_topic">Scan QR Code</h1>
-          <div className="qr">
+            }
+        };
+
+        fetchData();
+    }, [authEmail, authPassword, navigate]);
+
+
+    const handleProfilePictureUpload = (file) => {
+        const form = new FormData();
+        form.append('image', file);
+        form.append('auth_email', authEmail);
+        form.append('auth_password', authPassword);
+
+        axios
+            .post('http://localhost:5002/user/edit/avatar', form)
+            .then((response) => {
+                const data = response.data;
+                const status = data.status;
+                if (status === 'success') {
+                    setUpdate(update + 1);
+                } else if (status === 'auth_failed') {
+                    navigate('/signout');
+                } else {
+                    const message = data.message;
+                    alert('Error - ' + message);
+                }
+            })
+            .catch((error) => {
+                alert('Error 2 - ' + error);
+            });
+    };
+
+
+    {
+        return (
             <div>
-              <QRCode
-                value={qrCodeUrl}
-                size={200}
-                bgColor="#ffffff"
-                fgColor="#000000"
-                level="L"
-              />
+                <div className='upper-img'>
+                    <div className='profile-container'>
+                        <div className='upper-container'>
+                            <div className='image-container'>
+                                <img className='profile_img' src={profilePictureUrl} alt="profile" height="100px" width="100px" />
+                                <label className='camera-button' htmlFor="file-input">
+                                    <input id="file-input" type="file" onChange={(e) => handleProfilePictureUpload(e.target.files[0])} style={{ display: "none" }} />
+                                    <img src={Camera} alt="camera" />
+                                </label>
+                            </div>
+                            <div className='img_text'>
+                                <h1 className='pcard-title'>{profileDetails.full_name}</h1>
+                            </div>
+                        </div>
+                        <div className="lower_pcontainer">
+                            <div className="profile_details">
+                                <div className="profile_details_form card">
+                                    <h1 className="card_title">User Information</h1>
+                                    <form className='profile_form'>
+                                        <label>Full Name</label>
+                                        <input className="profile_input" type="text" onChange={(e) => setFullName(e.target.value)} placeholder="Full Name" defaultValue={profileDetails.full_name} />
+                                        <label>Address</label>
+                                        <input className="profile_input" type="text" onChange={(e) => setAddress(e.target.value)} placeholder="Address" defaultValue={profileDetails.address} />
+                                        <label>Contact Number</label>
+                                        <input className="profile_input" type="text" onChange={(e) => setMobileNumber(e.target.value)} placeholder="Contact Number" defaultValue={profileDetails.mobile_number} />
+                                        <label>Email</label>
+                                        <input className="profile_input" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" defaultValue={profileDetails.email} />
+                                        <label>Birthdate</label>
+                                        <input className="profile_input" type="date" onChange={(e) => setBirthDate(e.target.value)} placeholder="Birthdate" defaultValue={profileDetails.birthdate} value={birthdate} />
+                                        <div className='profile_btn'>
+                                            <button className='edit-profile'>Edit Profile</button>
+                                            <button className='delete'>Delete Account</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h1 className='qr_topic'>Scan QR Code</h1>
+                <div className='qr'>
+                    <div className="qr_picture">
+                        <img className='qrimg' src={QRImg} />
+                    </div>
+                    <div>
+                        <button className='scan'>SCAN</button>
+                    </div>
+                </div>
+
             </div>
-            <div>
-              <button className="scan">SCAN</button>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
-  );
+        );
+    }
 }
 
 export default Profile;

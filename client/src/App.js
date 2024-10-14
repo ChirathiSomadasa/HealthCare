@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/header/Header';
@@ -13,19 +12,12 @@ import AddAppointment from './pages/Appointments/addAppointment';
 import Confirmation from './pages/Appointments/Confirmation';
 import ViewAppointment from './pages/Appointments/viewAppointments';
 import EditAppointment from './pages/Appointments/EditAppointment';
-import PatientList from "./pages/patientList/PatientList";
-import HealthCard from "./pages/patientList/HealthCard";
-import AddPatient from "./pages/patientList/AddPatient";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const queryClient = new QueryClient();
 
 
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
     <Header />
     <Routes>
@@ -40,18 +32,11 @@ function App() {
       <Route path = "/confirmation" element={<Confirmation/>}/>
       <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
       <Route path = "/editAppointment" element={<EditAppointment/>}/>
-      <Route path="/patientList" element={<PatientList />} />
-          <Route
-            path="/patientList/HealthCard/:patientId"
-            element={<HealthCard />}
-          />
-          <Route path="/patientList/AddPatient" element={<AddPatient />} />
-        </Routes>
-      </BrowserRouter>
-
-      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom" /> */}
-    </QueryClientProvider>
-
+     
+      
+     
+    </Routes>
+  </BrowserRouter>
   );
 }
 

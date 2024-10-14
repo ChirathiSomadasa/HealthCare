@@ -201,7 +201,7 @@
 .qr {
   margin: auto;
   width: 1200px;
-  height: 300px;
+  height: 600px;
   background-color:#d1f6f7;
   margin-bottom: 50px;
   border-radius: 20px;
@@ -235,5 +235,4 @@
   border-radius: 20px;
   border: none;
   font-size: 20px;
-  cursor: pointer;
 }
