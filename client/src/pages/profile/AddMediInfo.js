@@ -12,14 +12,13 @@ import { errorMessage, successMessage } from "../../utils/Alert";
 function AddMediInfo() {
     var navigate = useNavigate();
     const location = useLocation(); // Get the state from navigation
-    const { full_name} = location.state || {}; // Destructure the passed state
+    const { userId,full_name} = location.state || {}; // Destructure the passed state
     const [recordDetails, setRecordDetails] = useState(null);
 
     const { mutate, isLoading } = useMutation({
          onSuccess: (res) => {
             successMessage("Success", res.data.message, () => {
-                navigate("/patientList");
-            });
+             });
         },
         onError: (err) => {
             errorMessage("Error", err.response.data.message);
@@ -49,6 +48,7 @@ function AddMediInfo() {
         try {
             const response = axios.post("http://localhost:5002/AddProblem",
                  {  
+                    userId: userId, // Add userId to the request
                     guardian_name: values.guardian_name,
                     guardian_Mno: values.guardian_Mno,
                     height: values.height,
@@ -96,7 +96,14 @@ function AddMediInfo() {
             <div className="mediInfo-authentication">
                 <div className="mediInfo-authentication-form card p-2">
                     <h1 className="mediInfo-card-title">Add Information</h1>
-                    <Form layout="vertical" onFinish={handleSubmit} initialValues={{ full_name }}>
+                    <Form layout="vertical" onFinish={handleSubmit} initialValues={{ userId,full_name }}>
+                    <Form.Item
+                            label="Full Name"
+                            name="userId"
+                             
+                        >
+                            <Input className="mediInfo-signup_input"   />
+                        </Form.Item>
                         <Form.Item
                             label="Full Name"
                             name="full_name"

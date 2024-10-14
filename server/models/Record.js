@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const USER_ROLES = require("../constants/roles");
 
 const recordSchema = new mongoose.Schema(
   {
-     
+    userId: { type: String, required: true }, // Add userId field
     guardian_name: { type: String, required: true },
     guardian_Mno: { type: String, required: true },  // Corrected typo
     height: { type: String, required: true },
@@ -15,6 +16,7 @@ const recordSchema = new mongoose.Schema(
     oxygen_saturation: { type: String, required: true },
     respiratory_rate: { type: String, required: true },
     gender: { type: String, required: true },
+     
   },
   {
     timestamps: true,

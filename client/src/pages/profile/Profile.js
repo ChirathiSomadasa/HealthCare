@@ -59,7 +59,7 @@ function Profile() {
   });
 
   function AddMediInfoPage() {
-    navigate("/profile/AddMediInfo", { state: { full_name: firstName} });
+    navigate("/profile/AddMediInfo", { state: {userId: user._id,full_name: firstName} });
     setSelectedTab("Personal Information");
   }
 
