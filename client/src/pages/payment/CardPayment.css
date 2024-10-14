@@ -1,0 +1,255 @@
+/* .payment-page {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .payment-page h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .payment-page p {
+    color: #6c7a89;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .payment-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .new-card-section {
+    width: 100%;
+  }
+  
+  .card-inputs {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .card-input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .expiry-cvv-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .expiry-input {
+    flex: 1;
+  }
+  
+  .cvv-input {
+    flex: 1;
+  }
+  
+  .expiry-fields {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .expiry-fields input {
+    width: 45px;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .card-input-cvv {
+    width: 45px;
+    padding: 10px;
+    margin-left: 20px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .save-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .save-btn:hover {
+    background-color: #0056b3;
+  }
+   */
+
+
+  .payment-page {
+    padding: 10px;
+    /* margin: 0 auto; */
+    /* background-color: #4f657f; */
+    background-color: #d1f6f6;
+    border-radius: 10px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: left; */
+  }
+  .payment-page h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .payment-page p {
+    color: #545454;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+
+  .card-payment-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+  }
+  .card-details-section {
+    width: 400px;
+    padding: 20px;
+    /* background-color: #9fcbfe;  */
+    background-color: #E0F2F2;
+    border: 2px solid #d0d5db;
+    border-radius: 10px;
+  }
+  .card-details-section h3 {
+    text-align: left;
+    font-size: 16px;
+  }
+
+
+  .input-group {
+    margin: 0 0 20px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .input-group label {
+    margin-right: 20px;
+    font-size: 16px;
+  }
+  .input-group input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #d0d5db;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+
+  .expiry-cvv {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .expiry-cvv label {
+    margin-right: 20px;
+  }
+  .expiry-cvv input {
+    width: 30px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .expiry-input {
+    display: flex;
+    justify-content: space-between;
+  }
+  .expiry-input label {
+    margin-right: 100px;
+  }
+  .cvv-input {
+    display: flex;
+  }
+  .cvv-input input {
+    width: 50px;
+  }
+
+
+  .save-btn {
+    margin: 0 0 0 0;
+    padding: 10px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .save-btn:hover {
+    background-color: #0056b3;
+  }
+
+
+  .registered-cards-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    margin-top: 50px;
+  }
+  .payment-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .card-header {
+    font-size: 16px;
+    text-align: left;
+    /* margin-bottom: 200px; */
+    border-bottom: 1px solid #ddd;
+  } 
+  .card-cell {
+    padding: 15px;
+  } 
+  .payment-cell:hover {
+    background-color: #f0f0f0;
+  }
+
+  .remove-cell {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+  }
+  .remove-btn {
+    margin: 0 0 0 0;
+    padding: 10px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .remove-btn:hover {
+    background-color: #0056b3;
+  }
+  

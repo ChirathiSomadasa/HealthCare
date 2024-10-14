@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const insuranceSchema = new mongoose.Schema({
 
-    userId: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: true 
-    },
+    // userId: { 
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'User', 
+    //     required: true 
+    // },
     company: { 
         type: String, 
         required: true 
