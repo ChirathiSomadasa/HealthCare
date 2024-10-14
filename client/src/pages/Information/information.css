@@ -1,0 +1,21 @@
+
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.top-button {
+    padding: 10px 20px;
+    background-color: #3acfe5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.top-button:hover {
+    background-color: #34bcd3;
+}
