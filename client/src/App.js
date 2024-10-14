@@ -12,7 +12,7 @@ import AddAppointment from './pages/Appointments/addAppointment';
 import Confirmation from './pages/Appointments/Confirmation';
 import ViewAppointment from './pages/Appointments/viewAppointments';
 import EditAppointment from './pages/Appointments/EditAppointment';
-
+import Information from './pages/Information/information';
 
 
 
@@ -32,6 +32,7 @@ function App() {
       <Route path = "/confirmation" element={<Confirmation/>}/>
       <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
       <Route path = "/editAppointment" element={<EditAppointment/>}/>
+      <Route path = "/Information" element={<Information/>}/>
      
       
      

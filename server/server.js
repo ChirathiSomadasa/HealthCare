@@ -6,8 +6,7 @@ const dbConfig = require("./config/dbConfig");
 var User = require("./models/User");
 const doctorRoutes = require('./routes/doctorRoutes');
 const appointmentRoutes = require('./routes/Appointments');
-
-
+const feedbackRoutes = require('./routes/recordRoutes');
 
 
 var userRoute = require("./routes/user_route");
@@ -44,6 +43,8 @@ app.use(async (req, res, next) => {
 app.use("/user", userRoute);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointment', appointmentRoutes);
+app.use('/api/records', feedbackRoutes);
+
 
 
 
