@@ -38,7 +38,7 @@ const doctorSchema = new mongoose.Schema({
         enum: ['Male', 'Female', 'Other'],
         required: true
     }
-});
+}, { collection: 'docAppointments' });
 
 const Doctor = mongoose.model('Doctor', doctorSchema);
 module.exports = Doctor;

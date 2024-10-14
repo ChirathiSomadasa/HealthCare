@@ -14,6 +14,11 @@ const AddAppointment = () => {
         appointmentTime: "",
     });
 
+    const [validationErrors, setValidationErrors] = useState({
+        patientName: "",
+        patientNumber: "",
+    });
+
     const location = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
@@ -28,7 +33,7 @@ const AddAppointment = () => {
             if (doctorId) {
                 try {
                     const response = await axios.get(`http://localhost:5002/api/doctors/${doctorId}`);
-                    // Ensure the data structure from response is correct
+
                     setFormData((prevData) => ({
                         ...prevData,
                         doctorName,
@@ -45,20 +50,72 @@ const AddAppointment = () => {
     }, [doctorId, doctorName, doctorSpecialization, appointmentDate, appointmentTime]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+
+        // Validate on change
+        if (name === "patientName") {
+            validatePatientName(value);
+        } else if (name === "patientNumber") {
+            validatePatientNumber(value);
+        }
+    };
+
+    const validatePatientName = (value) => {
+        const namePattern = /^[A-Za-z\s]+$/;
+        if (!namePattern.test(value)) {
+            setValidationErrors((prev) => ({
+                ...prev,
+                patientName: "Patient Name can only contain letters and spaces.",
+            }));
+        } else {
+            setValidationErrors((prev) => ({
+                ...prev,
+                patientName: "",
+            }));
+        }
+    };
+
+    const validatePatientNumber = (value) => {
+        const numberPattern = /^\d{10}$/;
+        if (!numberPattern.test(value)) {
+            setValidationErrors((prev) => ({
+                ...prev,
+                patientNumber: "Patient Number must be exactly 10 digits.",
+            }));
+        } else {
+            setValidationErrors((prev) => ({
+                ...prev,
+                patientNumber: "",
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
+        // Final validation before submission
+        if (validationErrors.patientName || validationErrors.patientNumber) {
+            return; // Prevent submission if there are validation errors
+        }
+    
         try {
             const response = await axios.post("http://localhost:5002/api/appointment/addAppointment", formData);
-            alert("Appointment confirmed!");
-            navigate("/confirmation");
+            
+            // Navigate to confirmation with date and time
+            navigate("/confirmation", {
+                state: {
+                    appointmentDate: formData.appointmentDate,
+                    appointmentTime: formData.appointmentTime,
+                },
+            });
+    
         } catch (error) {
             console.error("Error booking appointment:", error.response ? error.response.data : error.message);
             alert("There was an error booking the appointment. Please try again.");
         }
     };
+    
 
     const formatTo12Hour = (timeString) => {
         const date = new Date(timeString);
@@ -74,68 +131,83 @@ const AddAppointment = () => {
     return (
         <div className="Addappointment-container">
             <form onSubmit={handleSubmit}>
-                <div className="patient-details">
-                    <h2>Patient Details</h2>
-                    <label>Patient Name:</label>
-                    <input
-                        className="Adetails"
-                        type="text"
-                        name="patientName"
-                        value={formData.patientName}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label>Patient Number:</label>
-                    <input
-                        type="text"
-                        name="patientNumber"
-                        value={formData.patientNumber}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label>Additional Note:</label>
-                    <textarea
-                        name="additionalNote"
-                        value={formData.additionalNote}
-                        onChange={handleChange}
-                        placeholder="Any comments regarding the patient health"
-                    />
-                </div>
+                <div className="patientDocDetails">
+                    <div className="appointmentpatient-details">
+                        <h2>Patient Details</h2>
+                        <label className="patientApp">Patient Name:</label>
+                        <input
+                            className="appPatient"
+                            type="text"
+                            name="patientName"
+                            value={formData.patientName}
+                            onChange={handleChange}
+                            required
+                        />
+                        {validationErrors.patientName && (
+                            <div className="error-appmessage">{validationErrors.patientName}</div>
+                        )}
+                        <label className="patientApp">Patient Number:</label>
+                        <input
+                            type="text"
+                            name="patientNumber"
+                            value={formData.patientNumber}
+                            onChange={handleChange}
+                            className="appPatient"
+                            required
+                        />
+                        {validationErrors.patientNumber && (
+                            <div className="error-appmessage">{validationErrors.patientNumber}</div>
+                        )}
+                        <label className="patientApp">Additional Note:</label>
+                        <textarea
+                            name="additionalNote"
+                            value={formData.additionalNote}
+                            onChange={handleChange}
+                            placeholder="Any comments regarding the patient health"
+                            className="appPatient"
+                        />
+                    </div>
 
-                <div className="appointment-details">
-                    <h2>Appointment Details</h2>
-                    <label>Doctor Name:</label>
-                    <input
-                        type="text"
-                        name="doctorName"
-                        value={formData.doctorName}
-                        readOnly
-                    />
-                    <label>Doctor Specialization:</label>
-                    <input
-                        type="text"
-                        name="doctorSpecialization"
-                        value={formData.doctorSpecialization}
-                        readOnly
-                    />
-                    <label>Appointment Date:</label>
-                    <input
-                        type="date"
-                        name="appointmentDate"
-                        value={formData.appointmentDate}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label>Appointment Time:</label>
-                    <input
-                        type="text"
-                        name="appointmentTime"
-                        value={formData.appointmentTime}
-                        readOnly
-                    />
-                    <button type="submit" className="confirm-button">
-                        Confirm Appointment
-                    </button>
+                    <div className="appointmentDoc-details">
+                        <h2>Appointment Details</h2>
+                        <label className="patientApp">Doctor Name:</label>
+                        <input
+                            type="text"
+                            name="doctorName"
+                            value={formData.doctorName}
+                            readOnly
+                            className="appPatient"
+                        />
+                        <label className="patientApp">Doctor Specialization:</label>
+                        <input
+                            type="text"
+                            name="doctorSpecialization"
+                            value={formData.doctorSpecialization}
+                            readOnly
+                            className="appPatient"
+                        />
+                        <label className="patientApp">Appointment Date:</label>
+                        <input
+                            type="date"
+                            name="appointmentDate"
+                            value={formData.appointmentDate}
+                            onChange={handleChange}
+                            required
+                            readOnly
+                            className="appPatient"
+                        />
+                        <label className="patientApp">Appointment Time:</label>
+                        <input
+                            type="text"
+                            name="appointmentTime"
+                            value={formData.appointmentTime}
+                            readOnly
+                            className="appPatient"
+                        />
+                        <button type="submit" className="confirmapp-button">
+                            Confirm Appointment
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

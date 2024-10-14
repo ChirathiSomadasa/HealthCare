@@ -10,6 +10,9 @@ import DoctorAppointment from './pages/Appointments/DoctorAppointment';
 import DoctorEntryForm from './pages/Appointments/DoctorEntryForm';
 import AddAppointment from './pages/Appointments/addAppointment';
 import Confirmation from './pages/Appointments/Confirmation';
+import ViewAppointment from './pages/Appointments/viewAppointments';
+import EditAppointment from './pages/Appointments/EditAppointment';
+
 
 
 
@@ -27,7 +30,10 @@ function App() {
       <Route path = "/DoctorEntry" element={<DoctorEntryForm/>}/>
       <Route path = "/addAppointment" element={<AddAppointment/>}/>
       <Route path = "/confirmation" element={<Confirmation/>}/>
+      <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
+      <Route path = "/editAppointment" element={<EditAppointment/>}/>
      
+      
      
     </Routes>
   </BrowserRouter>

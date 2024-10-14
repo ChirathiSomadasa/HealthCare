@@ -1,0 +1,145 @@
+.viewApp-container {
+  padding: 20px;
+  background-image: url('../../images/Appointments/bg.jpg'); 
+  position: relative;
+  z-index: 1;
+}
+
+.viewApp-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%; 
+  margin-top: 70px;
+  background-image: url('../../images/Appointments/nurse.png'); 
+  background-size: cover; 
+  background-position: left; 
+  z-index: -1; 
+}
+
+.viewApp-title {
+  margin-bottom: 20px;
+  text-align: center; 
+  font-size: 32px;
+}
+
+.viewApp-controls {
+   
+  border-radius: 5px; 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  margin-bottom: 20px; 
+  background-color: #0000005b;
+  gap: 1350px;
+}
+
+.viewApp-controls2 {
+   
+  border-radius: 5px; 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  margin-bottom: 20px; 
+  gap:10px;
+ 
+}
+
+.viewApp-searchInput {
+  margin-bottom: 20px;
+  padding: 15px;
+  width: 100%;
+  max-width: 400px;
+  height: 10%;
+  border: 2px solid #000000; 
+  border-radius: 5px; 
+  font-size: 24px; 
+  outline: none; 
+  color: #08023e;
+  font-weight: bold;
+}
+
+
+.viewApp-downloadButton, .viewApp-searchButton {
+  display: block;
+  padding: 15px 30px; 
+  background-color: #2255bb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: fit-content;
+  font-size: 18px; 
+  transition: background-color 0.3s; 
+}
+
+.viewApp-downloadButton:hover, .viewApp-searchButton:hover {
+  background-color: #06064d; 
+}
+
+.viewApp-cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px; 
+  width: 50%;
+}
+
+.viewApp-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.viewApp-card:hover {
+  transform: scale(1.02);
+}
+
+.viewApp-card h3 {
+  margin-top: 0;
+}
+
+.viewApp-cardActions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewApp-actionButton {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.viewApp-actionButton1 {
+  padding: 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  height: 10%;
+  cursor: pointer;
+}
+
+.viewApp-actionButton.delete {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.viewApp-actionButton1.reschedule {
+  background-color: #4d88ff;
+  color: white;
+}
+
+.viewApp-error {
+  color: red;
+  margin-bottom: 20px;
+}

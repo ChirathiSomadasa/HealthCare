@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URL,{
-    dbName: 'csse',
+    dbName: 'csse_new_db',
     
 })
 

@@ -3,7 +3,6 @@ import axios from 'axios';
 import './DoctorAppointment.css';
 import { useNavigate } from 'react-router-dom';
 import Icon1 from '../../images/Appointments/img1.png';
-import Icon2 from '../../images/Appointments/img2.png';
 import Icon3 from '../../images/Appointments/img3.png';
 import Icon5 from '../../images/Appointments/imgg5.png';
 import Icon6 from '../../images/Appointments/img6.png';
@@ -66,8 +65,8 @@ const DoctorAppointment = () => {
                 <h1 className="Dappointment-heading">Book an Appointment at HealthCare</h1>
             </div>
 
-            <div className="Dappointment-search-form">
-                <form onSubmit={handleSearch}>
+            <div className="Dappointment_search_form">
+                <form className="Dappointment_search" onSubmit={handleSearch}>
                     <input 
                         type="text"
                         placeholder="Search Doctor Name"
@@ -118,12 +117,11 @@ const DoctorAppointment = () => {
                         className="input-date"
                         required
                     />
-                    <button type="submit" className="btn-search">Search</button>
+                    <button type="submit" className="btn-appsearch">Search</button>
                 </form>
                 <img src={Icon1} alt="icon1" className="service-icon" />
-                <img src={Icon2} alt="icon2" className="service-icon" />
-                <img src={Icon3} alt="icon3" className="service-icon" />
                 <img src={Icon5} alt="icon5" className="service-icon" />
+                <img src={Icon3} alt="icon3" className="service-icon" />
                 <img src={Icon6} alt="icon6" className="service-icon" />
             </div>
 
