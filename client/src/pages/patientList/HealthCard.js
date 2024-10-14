@@ -58,6 +58,8 @@ function HealthCard() {
   };
   //
   return (
+
+    <div className="healthCard_bg">
     <div className="health-card-container">
       {/* Display loading state */}
       {isLoading && <p>Loading patient data...</p>}
@@ -77,31 +79,41 @@ function HealthCard() {
               height="100px"
               width="100px"
             />
-            <p>
-              <strong>Patient Name:</strong> {user.data.user.full_name || "N/A"}
-            </p>
-            <p>
-              <strong>Patient ID:</strong> {user.data.user._id || "N/A"}
-            </p>
-            <p>
-              <strong>Address:</strong> {user.data.user.address || "N/A"}
-            </p>
-            <p>
-              <strong>Contact No:</strong>{" "}
-              {user.data.user.mobile_number || "N/A"}
-            </p>
-            <p>
-              <strong>Date of Birth:</strong>{" "}
-              {user.data.user.birthdate
-                ? new Date(user.data.user.birthdate).toLocaleDateString()
-                : "N/A"}
-            </p>
-            <p>
-              <strong>Registered Date:</strong>{" "}
-              {user.data.user.createdAt
-                ? new Date(user.data.user.createdAt).toLocaleDateString()
-                : "N/A"}
-            </p>
+            <table className="healthcard_table">
+              <tbody>
+                <tr>
+                  <th className="hth">Patient Name</th>
+                  <td className="htd">{user.data.user.full_name || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th className="hth">Patient ID </th>
+                  <td className="htd">{user.data.user._id || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th className="hth">Address</th>
+                  <td className="htd">{user.data.user.address || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th className="hth">Contact No</th>
+                  <td className="htd">{" "} {user.data.user.mobile_number || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th className="hth">Date of Birth</th>
+                  <td className="htd">{" "}
+                    {user.data.user.birthdate
+                      ? new Date(user.data.user.birthdate).toLocaleDateString()
+                      : "N/A"}</td>
+                </tr>
+                <tr>
+                  <th className="hth">Registered Date</th>
+                  <td className="htd">{" "}
+                    {user.data.user.createdAt
+                      ? new Date(user.data.user.createdAt).toLocaleDateString()
+                      : "N/A"}</td>
+                </tr>
+
+              </tbody>
+            </table>
           </div>
 
           <div className="qr-section">
@@ -136,6 +148,7 @@ function HealthCard() {
           </div>
         </>
       )}
+    </div>
     </div>
   );
 }

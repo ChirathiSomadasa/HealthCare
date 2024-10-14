@@ -24,32 +24,53 @@
     border-radius: 8px;
 }
 
-.patient-list-container table {
+.patient-table{
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
     border-radius: 10px;
+    text-align: left !important;
 }
 
-.patient-list-container th {
-    padding: 20px 5px;
-    border-bottom: 1px solid #03b7bd;
+.pth {
+    padding: 20px;
+    border-bottom: 4px solid #ffffff;
     text-align: left;
     font-size: 14px;
     background-color:#035455;
     color: white;
+   
     
 }
 
-.patient-list-container td {
-    padding: 20px 5px;
-    border-bottom: 1px solid #03b7bd;
+.ptd {
+    padding: 20px;
+    border-bottom: 4px solid #ffffff;
     text-align: left;
     font-size: 14px;
     font-weight: 100;
     background-color:#e7fafb;
 }
 
+.ptdd{
+
+    padding: 20px 100px;
+    border-bottom: 4px solid #ffffff;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 100;
+    background-color:#e7fafb;
+}
+
+.ptdp{
+
+    padding: 20px 100px;
+    border-bottom: 4px solid #ffffff;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 100;
+    background-color:#e7fafb;
+}
 .generate_btn {
     width: 100px;
     height: 40px;
