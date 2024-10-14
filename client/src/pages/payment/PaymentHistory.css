@@ -1,0 +1,53 @@
+.payment-history {
+    padding: 20px;
+  }
+  
+  .payment-history h2 {
+    /* font-size: 24px;  */
+    margin: 0;
+  }
+  
+  .payment-history-header {
+    display: flex;
+    gap: 10px; /* Adds space between input and select */
+  }
+  
+  .payment-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .payment-history-header input,
+.payment-history-header select {
+  height: auto; /* Adjust this value to match the height of the h2 */
+  padding: 5px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+  
+  .payment-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .payment-header {
+    padding: 12px;
+    text-align: left;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .payment-cell {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .payment-row:hover {
+    background-color: #f0f0f0;
+  }
+  
+  

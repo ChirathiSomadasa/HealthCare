@@ -76,3 +76,7 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+
+  const Payment = require('./routes/payment/paymentRoutes');
+app.use('/api_p', Payment);
