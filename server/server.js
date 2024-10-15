@@ -78,5 +78,9 @@ mongoose
   });
 
 
-  const Payment = require('./routes/payment/paymentRoutes');
+const Payment = require('./routes/payment/paymentRoutes');
 app.use('/api_p', Payment);
+const doctorRoutes = require('./routes/doctorRoutes');
+app.use('/api/doctors', doctorRoutes);
+const appointmentRoutes = require('./routes/Appointments');
+app.use('/api/appointment', appointmentRoutes);

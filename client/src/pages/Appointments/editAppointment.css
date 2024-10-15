@@ -1,0 +1,29 @@
+.editApp-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.editApp-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.editApp-selectContainer,
+.editApp-inputContainer {
+    margin-bottom: 20px;
+}
+
+.editApp-rescheduleButton {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editApp-rescheduleButton:hover {
+    background-color: #45a049;
+}

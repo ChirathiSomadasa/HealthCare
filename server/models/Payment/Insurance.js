@@ -12,11 +12,12 @@ const insuranceSchema = new mongoose.Schema({
         required: true 
     },
     policyNumber: { 
-        type: String, 
+        type: Number, 
         required: true 
     },
-    otherDetails: { 
-        type: String 
+    policyholderName: { 
+        type: String, 
+        require: true
     }
 });
 
