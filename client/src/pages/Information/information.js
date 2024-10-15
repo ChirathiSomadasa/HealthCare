@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './information.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import jsPDF from 'jspdf';
 
 
 function AddFeedback() {
@@ -175,7 +176,29 @@ function AddFeedback() {
 
     };
 
+    // State to manage the search term and sort order
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortOrder, setSortOrder] = useState('asc');
 
+    // Filtered and sorted users based on search term and sort order
+    const filteredAndSortedUsers = records?.data?.records
+        .filter(
+            (record) =>
+                record.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                record._id.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .sort((a, b) => {
+            if (sortOrder === 'asc') {
+                return a._id.localeCompare(b._id);
+            } else {
+                return b._id.localeCompare(a._id);
+            }
+        });
+
+    // Function to handle search term input
+    const manageSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
 
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this record?')) {
@@ -194,76 +217,104 @@ function AddFeedback() {
         switch (activeSection) {
             case 'personal':
                 return (
-                    <form onSubmit={handleSubmit} className="feedback-form">
-                        <div className="form-group">
-                            <label>Full Name:</label>
-                            <input type="text" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Email:</label>
-                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Weight:</label>
-                            <input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Height:</label>
-                            <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Gender:</label>
-                            <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Age:</label>
-                            <input type="text" value={age} onChange={(e) => setAge(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Blood Group:</label>
-                            <input type="text" value={bloodgroup} onChange={(e) => setBloodGroup(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Heart Rate:</label>
-                            <input type="text" value={heartrate} onChange={(e) => setHeartRate(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Temperature:</label>
-                            <input type="text" value={temperature} onChange={(e) => setTemperature(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Respiratory Rate:</label>
-                            <input type="text" value={respiratoryRate} onChange={(e) => setRespiratoryRate(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Blood Pressure:</label>
-                            <input type="text" value={bloodPressure} onChange={(e) => setBloodPressure(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Oxygen Saturation:</label>
-                            <input type="text" value={oxygenSaturation} onChange={(e) => setOxygenSaturation(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Guardian Name:</label>
-                            <input type="text" value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required />
-                        </div>
-                        <div className="form-group">
-                            <label>Guardian Contact Number:</label>
-                            <input type="text" value={guardianCNo} onChange={(e) => setGuardianCNo(e.target.value)} required />
-                        </div>
+                    <div className='QAddProblemForm'>
+                        <div className='Qaddproblem_photo'>
+                            <form onSubmit={handleSubmit} className="PAproductForm">
+                                <h2 className="PAtopic">Add Information</h2>
 
-                        <button type="submit" className="submit-button">Submit Information</button>
-                    </form>
+                                <div className="PAform-group">
+                                    <label>Full Name:</label>
+                                    <input type="text" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Email:</label>
+                                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Weight:</label>
+                                    <input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Height:</label>
+                                    <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Gender:</label>
+                                    <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Age:</label>
+                                    <input type="text" value={age} onChange={(e) => setAge(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Blood Group:</label>
+                                    <input type="text" value={bloodgroup} onChange={(e) => setBloodGroup(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Heart Rate:</label>
+                                    <input type="text" value={heartrate} onChange={(e) => setHeartRate(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Temperature:</label>
+                                    <input type="text" value={temperature} onChange={(e) => setTemperature(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Respiratory Rate:</label>
+                                    <input type="text" value={respiratoryRate} onChange={(e) => setRespiratoryRate(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Blood Pressure:</label>
+                                    <input type="text" value={bloodPressure} onChange={(e) => setBloodPressure(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Oxygen Saturation:</label>
+                                    <input type="text" value={oxygenSaturation} onChange={(e) => setOxygenSaturation(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Guardian Name:</label>
+                                    <input type="text" value={guardianName} onChange={(e) => setGuardianName(e.target.value)} required />
+                                </div>
+                                <div className="PAform-group">
+                                    <label>Guardian Contact Number:</label>
+                                    <input type="text" value={guardianCNo} onChange={(e) => setGuardianCNo(e.target.value)} required />
+                                </div>
+
+                                <button type="submit" className="PAbtn">Submit Information</button>
+                            </form>
+                        </div>
+                    </div>
                 );
 
             case 'visit':
 
                 return (
                     <div className="visit-history">
+                        <h2>Patient List</h2>
+                        <div className='searchp'>
+                            <input
+                                className="patient-filter-search"
+                                placeholder="Search by Name"
+                                type="text"
+                                value={searchTerm}
+                                onChange={manageSearch}
+                            />
+                            <button className="patient-filter-search-btn" onClick={manageSearch}>
+                                Clear Search
+                            </button>
+                        </div>
                         {records.length > 0 ? (
                             records.map(record => (
                                 <div key={record._id} className="record-container">
                                     <div className="user-info">
+                                        <h2 style={{
+                                            fontSize: '24px',
+                                            color: '#333',
+                                            fontWeight: 'bold',
+                                            textAlign: 'center',
+                                            margin: '20px 0',
+                                            borderBottom: '2px solid #ddd',
+                                            paddingBottom: '10px'
+                                        }}>Personal Information</h2>
                                         <h4>{record.fullname}</h4>
                                         <p>Email: {record.email}</p>
                                         <p>Guardian Name: {record.guardianName}</p>
@@ -274,7 +325,15 @@ function AddFeedback() {
                                         <p>Gender: {record.gender}</p>
                                     </div>
                                     <div className="details-info">
-
+                                    <h2 style={{
+                                            fontSize: '24px',
+                                            color: '#333',
+                                            fontWeight: 'bold',
+                                            textAlign: 'center',
+                                            margin: '20px 0',
+                                            borderBottom: '2px solid #ddd',
+                                            paddingBottom: '10px'
+                                        }}>Vital Status</h2>
                                         <p>Blood Group: {record.bloodgroup}</p>
                                         <p>Heart Rate: {record.heartrate}</p>
                                         <p>Blood Pressure: {record.bloodPressure}</p>
@@ -288,7 +347,7 @@ function AddFeedback() {
                                                 {record.notes.map((noteObj, index) => (
                                                     <li key={index}>
                                                         <p>{noteObj.note}</p>
-                                                     </li>
+                                                    </li>
                                                 ))}
                                             </ul>
                                         ) : (
@@ -313,6 +372,9 @@ function AddFeedback() {
                 return null;
         }
     };
+
+
+
 
     return (
         <div className="add-feedback-container" style={{ marginTop: "25px" }}>

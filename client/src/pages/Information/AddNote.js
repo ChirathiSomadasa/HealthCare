@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
+import './AddNote.css';
 
 function AddNote() {
     const { id } = useParams(); // Get the record ID from the URL
@@ -26,7 +27,7 @@ function AddNote() {
         <div className='QAddProblemForm'>
             <div className='Aaddproblem_photo'>
                 <br /><br />
-                <form className="PAproductForm" onSubmit={handleSubmit}>
+                <form className="PANoteForm" onSubmit={handleSubmit}>
                     <h2 className="PAtopic">Add Note</h2>
                     <div className="PAform-group">
                         <label>Clinical Note:</label>
@@ -38,7 +39,7 @@ function AddNote() {
                         />
                     </div>
                    
-                    <button type="submit" className="submit-button">Submit</button>
+                    <button type="submit" className="PAbtn">Submit</button>
                 </form>
             </div>
         </div>
