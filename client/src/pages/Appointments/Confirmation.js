@@ -11,7 +11,7 @@ const Confirmation = () => {
 
   const handlePayNow = () => {
     alert("Redirecting to payment page...");
-    navigate("/payment", { 
+    navigate("/paymentmethod", { 
       state: { 
         doctorName, 
         appointmentDate,

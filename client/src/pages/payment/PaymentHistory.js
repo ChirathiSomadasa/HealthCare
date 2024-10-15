@@ -38,14 +38,14 @@ const PaymentHistory = () => {
 
 
 
-  // const paymentData = [
-  //   { doctor: 'Dr. Pooja Kariyawasam', date: '05/07/2024', amount: '2500.00' },
-  //   { doctor: 'Dr. Nihal Silva', date: '28/06/2024', amount: '3000.00' },
-  //   { doctor: 'Dr. Anjana Gunawardana', date: '15/07/2024', amount: '2700.00' },
-  //   { doctor: 'Dr. Pooja Kariyawasam', date: '08/07/2024', amount: '2500.00' },
-  //   { doctor: 'Dr. Anjana Gunawardana', date: '29/06/2024', amount: '2700.00' },
-  //   { doctor: 'Dr. Deepika Thejani', date: '18/06/2024', amount: '3200.00' },
-  // ];
+  const paymentData = [
+    { doctorName: 'Dr. Pooja Kariyawasam', date: '05/07/2024', amount: '2500.00' },
+    { doctorName: 'Dr. Nihal Silva', date: '28/06/2024', amount: '3000.00' },
+    { doctorName: 'Dr. Anjana Gunawardana', date: '15/07/2024', amount: '2700.00' },
+    // { doctor: 'Dr. Pooja Kariyawasam', date: '08/07/2024', amount: '2500.00' },
+    // { doctor: 'Dr. Anjana Gunawardana', date: '29/06/2024', amount: '2700.00' },
+    // { doctor: 'Dr. Deepika Thejani', date: '18/06/2024', amount: '3200.00' },
+  ];
 
 
 

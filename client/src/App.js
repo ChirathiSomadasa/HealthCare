@@ -43,8 +43,8 @@ function App() {
           />
           <Route path="/patientList/AddPatient" element={<AddPatient />} />
           <Route path="/" element={<Home />}/>
+          <Route path="/paymentmethod" element={<Payment />} />
           <Route path="/payment" element={<Payment1 />} />
-          <Route path="/payment1" element={<Payment1 />} />
           <Route path="/payment2" element={<Payment2 />} />
           <Route path="/payment3" element={<Payment3 />} />
 

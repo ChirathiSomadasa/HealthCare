@@ -100,7 +100,7 @@ const Payment = () => {
             // Send payment data to backend
             await axios.post('http://localhost:5002/api_p/payment', paymentData);
             alert('Payment successful');
-            navigate("/payment1", { 
+            navigate("/payment", { 
                 // state: { 
                 //   doctorName, 
                 //   appointmentDate,
