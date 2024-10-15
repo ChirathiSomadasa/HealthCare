@@ -7,9 +7,7 @@ const InsurancePayment = ({onInsuranceDetailsChange}) => {
     const [InsuranceDetails, setInsuranceDetails] = useState({
         InsuranceCompany: '',
         PolicyNumber: '',
-        PolicyholderName: '',
-        // expiryYear: '',
-        // cvv: ''
+        PolicyholderName: ''
     });
 
     const handleInsuranceInputChange = (e) => {
@@ -32,9 +30,10 @@ const InsurancePayment = ({onInsuranceDetailsChange}) => {
                             <label>Insurance Company</label>
                             <input
                                 type="text"
-                                name="cardNumber"
-                                placeholder="Enter card number"
+                                name="InsuranceCompany"
+                                placeholder="Enter Insurance Company"
                                 className="card-input"
+                                style={{width: '200px', marginTop: '0', padding: '5px'}}
                                 value={InsuranceDetails.InsuranceCompany}
                                 onChange={handleInsuranceInputChange}
                             />
@@ -44,9 +43,10 @@ const InsurancePayment = ({onInsuranceDetailsChange}) => {
                             <label>Policy Number</label>
                             <input
                                 type="text"
-                                name="cardOwner"
+                                name="PolicyNumber"
                                 placeholder="Enter Policy Number"
                                 className="card-input"
+                                style={{width: '200px', marginTop: '0', padding: '5px'}}
                                 value={InsuranceDetails.PolicyNumber}
                                 onChange={handleInsuranceInputChange}
                             />
@@ -56,9 +56,10 @@ const InsurancePayment = ({onInsuranceDetailsChange}) => {
                             <label>Policyholder Name</label>
                             <input
                                 type="text"
-                                name="cardOwner"
+                                name="PolicyholderName"
                                 placeholder="Enter Policyholder Name"
                                 className="card-input"
+                                style={{width: '200px', marginTop: '0', padding: '5px'}}
                                 value={InsuranceDetails.PolicyholderName}
                                 onChange={handleInsuranceInputChange}
                             />
