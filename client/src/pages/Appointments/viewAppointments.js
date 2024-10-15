@@ -75,21 +75,30 @@ function ViewAppointments() {
         setSearchTerm(event.target.value);
     };
 
-    const handleEdit = async (id, doctorId) => {
+    const handleEdit = async (id, doctorId, appointmentDate, appointmentTime) => {
         try {
             const response = await axios.get(`http://localhost:5002/api/appointment/doctorAppointments/${doctorId}`);
             const doctorAppointments = response.data;
-
-            if (doctorAppointments.length === 1) {
-                alert("This doctor has only this appointment. You can either cancel and participate in the current appointment.");
+    
+            // Filter out the current appointment and check if the doctor has other appointments
+            const otherAppointments = doctorAppointments.filter(
+                (appointment) =>
+                    appointment.appointmentDate !== appointmentDate ||
+                    appointment.appointmentTime !== appointmentTime
+            );
+    
+            if (otherAppointments.length === 0) {
+                alert("This doctor has only this appointment. You can either cancel or keep the current appointment.");
             } else {
-                navigate(`/editAppointment/${id}`, { state: { doctorAppointments } });
+                // Navigate to reschedule page with other available appointments
+                navigate(`/editAppointment/${id}`, { state: { doctorAppointments: otherAppointments } });
             }
         } catch (error) {
             console.error("Error fetching doctor's appointments:", error);
             alert("An error occurred while checking doctor's appointments.");
         }
     };
+    
 
     const handleDownloadPDF = async () => {
         // PDF download logic
@@ -141,7 +150,12 @@ function ViewAppointments() {
                             <p><strong>Notes:</strong> {appointment.additionalNote}</p>
                             <div className="viewApp-cardActions">
                                 <button className="viewApp-actionButton delete" onClick={() => handleDelete(appointment._id)}>Cancel Appointment</button>
-                                <button className="viewApp-actionButton1 reschedule" onClick={() => handleEdit(appointment._id, appointment.doctorId)}>Reschedule Appointment</button>
+                                <button
+    className="viewApp-actionButton1 reschedule"
+    onClick={() => handleEdit(appointment._id, appointment.doctorId, appointment.appointmentDate, appointment.appointmentTime)}
+>
+    Reschedule Appointment
+</button>
                             </div>
                         </div>
                     ))

@@ -89,4 +89,33 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// Route to check the availability of other appointments for the same doctor
+router.get('/checkAvailability/:appointmentId', async (req, res) => {
+    try {
+        const { appointmentId } = req.params;
+
+       
+        const appointment = await Appointment.findById(appointmentId);
+        if (!appointment) {
+            return res.status(404).json({ message: "Appointment not found" });
+        }
+
+        const doctorId = appointment.doctorId;
+
+        
+        const otherAppointments = await Appointment.find({
+            doctorId: doctorId,
+            _id: { $ne: appointmentId } 
+        });
+
+        
+        return res.status(200).json({ otherAppointments });
+    } catch (error) {
+        console.error("Error checking available appointments:", error);
+        return res.status(500).json({ message: "An error occurred while checking availability" });
+    }
+});
+
+
+
 module.exports = router;

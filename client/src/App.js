@@ -47,7 +47,7 @@ function App() {
           <Route path="/patientList/AddPatient" element={<AddPatient />} />
 
 
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/paymentmethod" element={<Payment />} />
           <Route path="/payment1" element={<Payment1 />} />
           <Route path="/payment2" element={<Payment2 />} />
           <Route path="/payment3" element={<Payment3 />} />
@@ -61,7 +61,7 @@ function App() {
       <Route path = "/addAppointment" element={<AddAppointment/>}/>
       <Route path = "/confirmation" element={<Confirmation/>}/>
       <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
-      <Route path = "/editAppointment" element={<EditAppointment/>}/>
+      <Route path = "/editAppointment/:id" element={<EditAppointment/>}/>
 
         </Routes>
       </BrowserRouter>
