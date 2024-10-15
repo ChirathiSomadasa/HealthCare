@@ -117,6 +117,7 @@ function ViewAppointments() {
                         value={searchTerm}
                         onChange={handleSearchChange}
                         className="viewApp-searchInput"
+                        style={{width: '200px', margin: '0'}}
                     />
                     <button
                         className="viewApp-searchButton"
