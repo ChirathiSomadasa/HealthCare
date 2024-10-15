@@ -106,6 +106,10 @@ function Profile() {
     });
   };
 
+  function medicalRecordPage(){
+    navigate("/profile/Medical");
+  }
+
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading profile data</p>;
 
@@ -242,7 +246,7 @@ function Profile() {
               />
             </div>
             <div>
-              <button className="scan">SCAN</button>
+              <button className="scan"  onClick={() => medicalRecordPage()}>SCAN</button>
             </div>
           </div>
         </>
