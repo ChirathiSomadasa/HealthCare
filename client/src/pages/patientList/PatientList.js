@@ -64,23 +64,23 @@ function PatientList() {
     });
 
   return (
-    <div className="patient-list-container">
+    <div className="patient-list-containerp">
       <h1>Patient List</h1>
-      <div className="patient-filter-bar">
+      <div className="patient-filter-barp">
         <input
-          className="patient-filter-search"
+          className="patient-filter-searchp"
           placeholder="Search by Name or ID"
           type="text"
           value={searchTerm}
           onChange={handleSearch}
         />
-        <button className="patient-filter-search-btn" onClick={handleSearch}>
+        <button className="patient-filter-search-btnp" onClick={handleSearch}>
           Clear Search
         </button>
-        <button className="sort_btn" onClick={handleSortById}>
+        <button className="sort_btnp" onClick={handleSortById}>
           {sortOrder === "asc" ? "Sort By ID (Desc)" : "Sort By ID (Asc)"}
         </button>
-        <button className="add_patient_btn" onClick={AddPatientPage}>
+        <button className="add_patient_btnp" onClick={AddPatientPage}>
           Add Patient
         </button>
       </div>

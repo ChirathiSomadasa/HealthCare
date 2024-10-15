@@ -1,0 +1,108 @@
+.confirmation-fullcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+    
+  }
+  .confirmation-fullcontainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../images/Appointments/bg.jpg) no-repeat center center; 
+    background-size: cover;
+    z-index: -1; 
+}
+.confirmation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    width:50%;
+    margin-top: 70px;
+    
+  }
+  
+  .confirmation-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .image-containerapp {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.image-containerapp img {
+    width: 500px; 
+    height: 300px; 
+}
+
+  
+  .confirmation-box {
+    background-color: #0f4bd62c;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .confirmation-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .pay-button {
+    background-color: #0655bd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+  
+  .pay-button:hover {
+    background-color: #155dbb;
+  }
+  
+  .warning-text {
+    font-size: 14px;
+    color: red;
+    margin-bottom: 20px;
+  }
+  
+  .warning-title {
+    font-weight: bold;
+  }
+  
+  .conDetails-button {
+    background-color: #1a73e8;
+    color: white;
+    padding: 10px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+   font-size: 20px;
+   font-weight: bold;
+   margin-left: auto;
+   display: block;
+
+  }
+  
+  .conDetails-button:hover {
+    background-color: #3b00b2;
+  }
+  

@@ -1,0 +1,211 @@
+
+.Dappointment-page-container {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #a5caf48d;
+}
+
+
+.Dappointment-header {
+    background-color: #003366;
+    padding: 20px;
+    color: white;
+}
+
+.Dappointment-heading {
+    font-size: 32px;
+}
+
+.Dappointment_search_form {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #002b55;
+    border-radius: 20px;
+    display: inline-block;
+    width: 90%;
+}
+
+.Dappointment_search {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: nowrap;
+}
+
+.Dappointment_search_form input, 
+.Dappointment_search_form select {
+    flex: 1; 
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    
+     
+}
+
+.btn-appsearch {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    flex-shrink: 0; 
+    height:60px;
+}
+
+.btn-appsearch:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+.input-doctor-name {
+    background-color: #fff;
+    height: 30px;
+    
+}
+
+.input-specialization, .input-hospital {
+    background-color: #e3f2fd;
+    height: 50px;
+}
+.input-date{
+    background-color: #e3f2fd;
+    height: 30px;
+
+}
+
+.services-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 30px;
+
+}
+
+.service-box {
+    text-align: center;
+    margin: 0 20px;
+
+}
+
+.service-icon {
+    width: 160px;
+    height: 150px;
+    margin-left: 60px;
+}
+
+.service-icon1 {
+    width: 100px;
+    height: 100px;
+    padding-left: 30px;
+    margin-top: 20px;
+}
+
+
+.service-description {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.app-container {
+    max-width: 600px;
+    margin: 20px auto;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border-radius: 8px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.service-topic{
+    font-size:20px;
+    font-style: bold;
+    margin-top: 10px;
+    color: #1f99af;
+}
+
+.doctor-results-container {
+    max-width: 100%; 
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    overflow-x: auto; 
+    white-space: nowrap; 
+}
+
+.doctor-results {
+    display: flex;
+    flex-direction: row; 
+    gap: 15px;
+    flex-wrap: nowrap; 
+}
+
+.doctor-card {
+    display: inline-block; 
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    background-color: #fff;
+    width: 280px;
+    white-space: normal; 
+}
+
+.doctor-card:hover {
+    transform: scale(1.02);
+}
+
+.doctor-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.doctor-specialization,
+.doctor-hospital,
+.doctor-gender {
+    margin: 5px 0;
+}
+
+.available-appointments-header {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.appointments-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.appointment-item {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #e7f4ff;
+    border-radius: 4px;
+}
+
+
+.btn-channel-now {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Add space above button */
+}
+
+.btn-channel-now:hover {
+    background-color: #0056b3;
+}

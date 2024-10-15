@@ -17,6 +17,15 @@ import Payment1 from './pages/payment/PaymentHistory';
 import Payment3 from './pages/payment/PaymentDetails';
 import Payment2 from './pages/payment/CardPayment';
 
+//appointments
+import AppointmentStart from './pages/Appointments/AppointmentStart';
+import DoctorAppointment from './pages/Appointments/DoctorAppointment';
+import DoctorEntryForm from './pages/Appointments/DoctorEntryForm';
+import AddAppointment from './pages/Appointments/addAppointment';
+import Confirmation from './pages/Appointments/Confirmation';
+import ViewAppointment from './pages/Appointments/viewAppointments';
+import EditAppointment from './pages/Appointments/EditAppointment';
+
 
 const queryClient = new QueryClient();
 
@@ -44,6 +53,15 @@ function App() {
           <Route path="/payment3" element={<Payment3 />} />
 
           <Route path="/" element={<Home />}/>
+
+
+          <Route path = "/appointments" element={<AppointmentStart/>}/>
+    <Route path = "/Doctorappointments" element={<DoctorAppointment/>}/>
+      <Route path = "/DoctorEntry" element={<DoctorEntryForm/>}/>
+      <Route path = "/addAppointment" element={<AddAppointment/>}/>
+      <Route path = "/confirmation" element={<Confirmation/>}/>
+      <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
+      <Route path = "/editAppointment" element={<EditAppointment/>}/>
 
         </Routes>
       </BrowserRouter>
