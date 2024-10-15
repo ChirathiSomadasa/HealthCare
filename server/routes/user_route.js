@@ -13,7 +13,9 @@ router.route("/login").post((req, res) => {
 
         if (doc != null) {
 
-            res.send({ status: "success", email: email, password:password });
+            res.send({ status: "success",
+                 email: email,
+                  password:password });
 
         } else {
             //invalid user
@@ -26,6 +28,7 @@ router.route("/login").post((req, res) => {
 
 });
 
+ 
 //register API endpoint
 router.route("/register").post((req, res) => {
 

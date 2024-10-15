@@ -50,3 +50,11 @@ app.use('/api/records', feedbackRoutes);
 
 const port = process.env.PORT || 5002;
 app.listen(port, () => console.log(`Node server started at port ${port}`));
+
+app.get('/api/records/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    const records = await Record.find({ userId }); // Adjust this based on how you store user IDs
+    res.json(records);
+});
+
+ 

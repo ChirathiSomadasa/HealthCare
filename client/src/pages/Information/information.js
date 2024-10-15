@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './information.css';
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 function AddFeedback() {
+    const navigate = useNavigate(); // For navigation
+    const { id } = useParams;
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [weight, setWeight] = useState('');
@@ -21,16 +25,31 @@ function AddFeedback() {
     const [loading, setLoading] = useState(false); // Show loading state while fetching data
     const [error, setError] = useState(null); // Error state if the fetch fails
     const [records, setRecords] = useState([]); // State to hold fetched records
+    const [editingRecord, setEditingRecord] = useState(null); // State for the record being edited
+    const [formData, setFormData] = useState();
+    const currentUserId = localStorage.getItem('currentUserId'); // Assuming user ID is stored in local storage
+    const [notes, setNotes] = useState(''); // New state for notes
 
 
-   
     const [activeSection, setActiveSection] = useState(); // Track which section is active
+
+    // Load current user's data on component mount
+    useEffect(() => {
+        const storedFullName = localStorage.getItem('currentUserFullName');
+        const storedEmail = localStorage.getItem('currentUserEmail');
+
+        if (storedFullName && storedEmail) {
+            setFullname(storedFullName);
+            setEmail(storedEmail);
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5002/api/records', { 
-                fullname, email ,weight,height,age,gender,bloodgroup,heartrate,bloodPressure,respiratoryRate,oxygenSaturation,temperature,guardianName,guardianCNo});
+            await axios.post('http://localhost:5002/api/records', {
+                fullname, email, weight, height, age, gender, bloodgroup, heartrate, bloodPressure, respiratoryRate, oxygenSaturation, temperature, guardianName, guardianCNo
+            });
             setFullname('');
             setEmail('');
             setWeight('');
@@ -52,7 +71,47 @@ function AddFeedback() {
             alert('Error submitting information. Please try again later.');
         }
     };
- 
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.put(`http://localhost:5002/api/records/${id}`, {
+                fullname, email, weight, height, age, gender, bloodgroup, heartrate,
+                bloodPressure, respiratoryRate, oxygenSaturation, temperature,
+                guardianName, guardianCNo
+            });
+            alert('Feedback updated successfully!');
+
+        } catch (error) {
+            console.error('Error updating feedback:', error);
+            alert('Error updating feedback. Please try again later.');
+        }
+    };
+
+    const handleNote = (id) => {
+        // Use navigate to move to the AddNote page with the record ID
+        navigate(`/Information/AddNote/${id}`);
+        fetchNotes(id);
+    };
+
+
+
+    const clearForm = () => {
+        setFullname('');
+        setEmail('');
+        setWeight('');
+        setHeight('');
+        setAge('');
+        setGender('');
+        setBloodGroup('');
+        setHeartRate('');
+        setBloodPressure('');
+        setRespiratoryRate('');
+        setTemperature('');
+        setOxygenSaturation('');
+        setGuardianName('');
+        setGuardianCNo('');
+    };
 
     const fetchVitalStatus = async (id) => {
         setLoading(true);
@@ -85,6 +144,51 @@ function AddFeedback() {
         }
     };
 
+    const fetchNotes = async (id) => {
+        try {
+            const response = await axios.get(`http://localhost:5002/api/records/${id}/notes`); // Assuming API endpoint for notes
+            setNotes(response.data.notes);
+        } catch (error) {
+            console.error('Error fetching notes:', error);
+            alert('Error fetching notes. Please try again later.');
+        }
+    };
+
+    const handleEdit = (record) => {
+        // Set the current record data in state for editing
+        setFullname(record.fullname);
+        setEmail(record.email);
+        setWeight(record.weight);
+        setHeight(record.height);
+        setAge(record.age);
+        setGender(record.gender);
+        setBloodGroup(record.bloodgroup);
+        setHeartRate(record.heartrate);
+        setBloodPressure(record.bloodPressure);
+        setRespiratoryRate(record.respiratoryRate);
+        setTemperature(record.temperature);
+        setOxygenSaturation(record.oxygenSaturation);
+        setGuardianName(record.guardianName);
+        setGuardianCNo(record.guardianCNo);
+        setActiveSection('personal'); // Switch to personal info section
+
+
+    };
+
+
+
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure you want to delete this record?')) {
+            try {
+                await axios.delete(`http://localhost:5002/api/records/${id}`); // Delete the record
+                alert('Record deleted successfully!');
+                fetchRecords(); // Refresh records after deletion
+            } catch (error) {
+                console.error('Error deleting record:', error);
+                alert('Error deleting record. Please try again later.');
+            }
+        }
+    };
 
     const renderSection = () => {
         switch (activeSection) {
@@ -151,33 +255,59 @@ function AddFeedback() {
                         <button type="submit" className="submit-button">Submit Information</button>
                     </form>
                 );
-        
+
             case 'visit':
+
                 return (
                     <div className="visit-history">
                         {records.length > 0 ? (
                             records.map(record => (
-                                <div key={record._id} className="record">
-                                    <h4>{record.fullname}</h4>
-                                    <p>Email: {record.email}</p>
-                                    <p>Weight: {record.weight}</p>
-                                    <p>Height: {record.height}</p>
-                                    <p>Age: {record.age}</p>
-                                    <p>Gender: {record.gender}</p>
-                                    <p>Blood Group: {record.bloodgroup}</p>
-                                    <p>Heart Rate: {record.heartrate}</p>
-                                    <p>Blood Pressure: {record.bloodPressure}</p>
-                                    <p>Respiratory Rate: {record.respiratoryRate}</p>
-                                    <p>Oxygen Saturation: {record.oxygenSaturation}</p>
-                                    <p>Temperature: {record.temperature}</p>
-                                    <p>Guardian Name: {record.guardianName}</p>
-                                    <p>Guardian Contact Number: {record.guardianCNo}</p>
+                                <div key={record._id} className="record-container">
+                                    <div className="user-info">
+                                        <h4>{record.fullname}</h4>
+                                        <p>Email: {record.email}</p>
+                                        <p>Guardian Name: {record.guardianName}</p>
+                                        <p>Guardian Contact: {record.guardianCNo}</p>
+                                        <p>Weight: {record.weight}</p>
+                                        <p>Height: {record.height}</p>
+                                        <p>Age: {record.age}</p>
+                                        <p>Gender: {record.gender}</p>
+                                    </div>
+                                    <div className="details-info">
+
+                                        <p>Blood Group: {record.bloodgroup}</p>
+                                        <p>Heart Rate: {record.heartrate}</p>
+                                        <p>Blood Pressure: {record.bloodPressure}</p>
+                                        <p>Respiratory Rate: {record.respiratoryRate}</p>
+                                        <p>Oxygen Saturation: {record.oxygenSaturation}</p>
+                                        <p>Temperature: {record.temperature}</p>
+                                        {/* Display Notes */}
+                                        <p>Notes:</p>
+                                        {record.notes && record.notes.length > 0 ? (
+                                            <ul>
+                                                {record.notes.map((noteObj, index) => (
+                                                    <li key={index}>
+                                                        <p>{noteObj.note}</p>
+                                                     </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p>No notes available</p>
+                                        )}
+
+                                    </div>
+                                    <div className="actions">
+                                        <button className="edit-button" onClick={() => handleEdit(record)}>Edit</button>
+                                        <button className="delete-button" onClick={() => handleDelete(record._id)}>Delete</button>
+                                        <button className="delete-button" onClick={() => { handleNote(record._id); fetchNotes(record._id); }}>Add Note</button>
+                                    </div>
                                 </div>
                             ))
                         ) : (
                             <p>No medical records available.</p>
                         )}
                     </div>
+
                 );
             default:
                 return null;
@@ -187,22 +317,23 @@ function AddFeedback() {
     return (
         <div className="add-feedback-container" style={{ marginTop: "25px" }}>
             <div className="button-container">
-            <button className="top-button" onClick={() => {
+                <button className="top-button" onClick={() => {
                     setActiveSection('personal');
                     // Reset records when switching back to personal section
                     setRecords([]);
-                }}>Add Personal Information</button>                
+                }}>Add Patient Information</button>
                 <button className="top-button" onClick={() => {
                     setActiveSection('visit');
                     fetchRecords(); // Fetch records when button is clicked
-                }}>My Medical Records</button>
+                }}>Medical Records</button>
+                <button className="top-button" >Get Report</button>
 
-                
+
             </div>
 
-            
 
-            <h2>{activeSection === 'personal' ? 'Add Information' : activeSection === 'vital' ? 'Vital Status' : 'Visit History'}</h2>
+
+            <h2>{activeSection === 'personal' ? ' ' : activeSection === 'vital' ? 'Vital Status' : ''}</h2>
 
             {renderSection()} {/* Render the current section based on the active button */}
         </div>

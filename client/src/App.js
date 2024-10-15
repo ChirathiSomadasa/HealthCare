@@ -13,7 +13,7 @@ import Confirmation from './pages/Appointments/Confirmation';
 import ViewAppointment from './pages/Appointments/viewAppointments';
 import EditAppointment from './pages/Appointments/EditAppointment';
 import Information from './pages/Information/information';
-
+import AddNote from './pages/Information/AddNote';
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
       <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
       <Route path = "/editAppointment" element={<EditAppointment/>}/>
       <Route path = "/Information" element={<Information/>}/>
-     
+     <Route path = "/Information/AddNote/:id" element={<AddNote/>}/>
       
      
     </Routes>

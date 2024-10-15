@@ -15,7 +15,9 @@ const feedbackSchema = new mongoose.Schema({
     oxygenSaturation: { type: String,required: true},
     temperature: {type: String,required: true} ,
     guardianName: { type: String,required: true},
-    guardianCNo: {type: String,required: true}  
+    guardianCNo: {type: String,required: true} ,
+    notes: [{ note: { type: String }, createdAt: { type: Date, default: Date.now } }] // Array of solutions
+ 
 });
 
 const Feedback = mongoose.model('records', feedbackSchema);
