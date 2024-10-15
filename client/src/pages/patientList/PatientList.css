@@ -1,5 +1,5 @@
 /* Appointment.css */
-.patient-list-container {
+.patient-list-containerp {
     max-width: auto;
     margin: 20px auto;
     padding: 20px;
@@ -8,11 +8,11 @@
     border-radius: 5px;
 }
 
-.patient-list-container h1 {
+.patient-list-containerp h1 {
     text-align: center;
 }
 
-.patient-filter-bar {
+.patient-filter-barp {
     height: 60px;
     padding-left: 20px;
     padding-right: 20px;
@@ -93,16 +93,16 @@
     justify-content: center;
 }
 
-.patient-filter-search {
+.patient-filter-searchp {
     padding: 10px;
     border-radius: 10px;
     outline: none;
     border: none;
-    width: 250px;
+    width: 250px !important;
     margin-left: 30px;
 }
 
-.patient-filter-search-btn {
+.patient-filter-search-btnp {
     background-color: #03b7bd;
     border-radius: 0px;
     padding: 10px;
@@ -112,12 +112,12 @@
     outline: none;
     margin-left: 10px;
     cursor: pointer;
-    width: 150px;
+    width: 150px !important;
     font-weight: 600;
 
 }
 
-.sort_btn {
+.sort_btnp {
     width: 150px;
     height: 40px;
     display: block !important;
@@ -130,12 +130,12 @@
     font-weight:600;
 }
 
-.sort_btn:hover {
+.sort_btnp:hover {
     background-color: #048587;
 }
 
 
-.add_patient_btn {
+.add_patient_btnp {
     width: 150px;
     height: 40px;
     display: block !important;
@@ -148,7 +148,7 @@
     font-weight: 600;
 }
 
-.add_patient_btn:hover {
+.add_patient_btnp:hover {
     background-color: #048587;
 }
 
