@@ -3,11 +3,12 @@ const Payment = require('../../models/Payment/Payment02'); // Import Payment mod
 // Payment Controller
 exports.submitPayment = async (req, res) => {
     try {
-        const { paymentMethod, cardDetails, insuranceDetails, cashDetails, totalAmount } = req.body;
+        const { paymentMethod, cardDetails, insuranceDetails, cashDetails, doctorName, totalAmount } = req.body;
 
         // Create payment data object based on payment method
         let paymentData = {
             paymentMethod,
+            doctorName,
             totalAmount,
         };
 
@@ -35,7 +36,7 @@ exports.submitPayment = async (req, res) => {
 
         res.status(200).json({ message: 'Payment successfully processed' });
     } catch (error) {
-        console.error('Error processing payment:', error);
+        console.error('Error processing payment:', error.message);
         res.status(500).json({ error: 'Payment processing failed' });
     }
 };

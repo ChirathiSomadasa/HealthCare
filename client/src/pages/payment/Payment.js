@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import './Payment.css';
 import CardPayment from './CardPayment';
 import InsurancePayment from './InsurancePayment';
 
-const Payment = ({ appointmentId }) => {
+const Payment = () => {
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const doctorName = location.state?.doctorName || ''; // Retrieve doctorName from state
+
     const [paymentMethod, setPaymentMethod] = useState('card');
-    const [doctorInfo, setDoctorInfo] = useState({ doctorName: '', fees: 0 });
+    const [doctorInfo, setDoctorInfo] = useState({ doctorName: doctorName , fees: 0 });
     const [totalAmount, setTotalAmount] = useState(0);
 
     const [cardDetails, setCardDetails] = useState({
@@ -24,21 +31,23 @@ const Payment = ({ appointmentId }) => {
     });
 
 
-    useEffect(() => {
-        // Fetch doctor and fees
+    useEffect(() => {// Fetch doctor and fees
+        
         const fetchDoctorInfo = async () => {
             try {
-                const response = await axios.get(`/api/appointment/${appointmentId}`);
+                const response = await axios.get(`http://localhost:5002/api_p/appointment/doctor?name=${doctorName}`);
                 setDoctorInfo(response.data);
-                setTotalAmount(response.data.fees);
+                setTotalAmount(response.data.fees + 499);
             } catch (error) {
                 console.error('Error fetching doctor info', error);
             }
         };
 
-        fetchDoctorInfo();
+        if (doctorName) {
+            fetchDoctorInfo();
+        }
 
-    }, [appointmentId]);
+    }, [doctorName]);
     
 
 
@@ -57,8 +66,8 @@ const Payment = ({ appointmentId }) => {
     const handleSubmitPayment = async () => {
         try {
             let paymentData = {
-                // appointmentId,
                 paymentMethod,
+                doctorName,
                 totalAmount,
             };
 
@@ -80,7 +89,6 @@ const Payment = ({ appointmentId }) => {
                     depositorName: document.getElementById('depositorName').value,
                     telephone: document.getElementById('telephone').value,
                     email: document.getElementById('email').value,
-                    // Here, we assume the bank slip file has already been uploaded via form data to the server
                     bankSlip: document.getElementById('bankSlip').files[0].name, // This assumes the file upload has been handled
                 };
                 paymentData = {
@@ -90,8 +98,15 @@ const Payment = ({ appointmentId }) => {
             }
 
             // Send payment data to backend
-            await axios.post('http://localhost:5002/api/payment', paymentData);
+            await axios.post('http://localhost:5002/api_p/payment', paymentData);
             alert('Payment successful');
+            navigate("/payment", { 
+                // state: { 
+                //   doctorName, 
+                //   appointmentDate,
+                //   appointmentTime 
+                // } 
+              });
             
         } catch (error) {
             console.error('Payment failed', error);
@@ -164,16 +179,16 @@ const Payment = ({ appointmentId }) => {
                         <div className="card-inputs">
                             <div className="input-group">
                                 <label>Depositor's Name</label>
-                                <input id="depositorName" type="text" placeholder="Depositor's Name" />
+                                <input id="depositorName" type="text" placeholder="Depositor's Name" style={{width: '200px', marginTop: '0', padding: '5px'}} />
                             </div>
 
                             <div className="input-group">
                                 <label>Telephone</label>
-                                <input id="telephone" type="text" placeholder="Telephone" />
+                                <input id="telephone" type="text" placeholder="Telephone" style={{width: '200px', marginTop: '0', padding: '5px'}} />
                             </div>   
                             <div className="input-group">
                                 <label>Email</label>
-                                <input id="email" type="text" placeholder="Email" />
+                                <input id="email" type="text" placeholder="Email" style={{width: '200px', marginTop: '0', padding: '5px'}} />
                             </div>
                             <div className="input-group">
                                 <label>Upload Bank Slip</label>
@@ -198,13 +213,17 @@ const Payment = ({ appointmentId }) => {
 
                         <tbody className="total-payment-tbody">
                             <tr>
-                                <td className="total-payment-cell">Dname: {doctorInfo.doctorName}</td>
-                                <td className="total-payment-cell">Dfees: {doctorInfo.fees}</td>
+                                <td className="total-payment-cell">Dr. {doctorInfo.doctorName}</td>
+                                <td className="total-payment-cell">RS {doctorInfo.fees}</td>
+                            </tr> 
+                            <tr>
+                                <td className="total-payment-cell">System fees </td>
+                                <td className="total-payment-cell">RS 499</td>
                             </tr> 
 
                             <tr>
                                 <td className="total-payment-total">Total Amount</td>
-                                <td className="total-payment-total">Total-fees:{totalAmount}</td>
+                                <td className="total-payment-total">RS {totalAmount}</td>
                             </tr>  
                         </tbody>
 
