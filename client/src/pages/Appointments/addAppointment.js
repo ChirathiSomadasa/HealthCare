@@ -105,6 +105,7 @@ const AddAppointment = () => {
             // Navigate to confirmation with date and time
             navigate("/confirmation", {
                 state: {
+                    doctorName: formData.doctorName,
                     appointmentDate: formData.appointmentDate,
                     appointmentTime: formData.appointmentTime,
                 },

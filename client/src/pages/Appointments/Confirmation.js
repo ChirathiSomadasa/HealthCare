@@ -5,11 +5,17 @@ import ConfirmImg from '../../images/Appointments/confirmation.png';
 
 const Confirmation = () => {
   const location = useLocation();
-  const { appointmentDate, appointmentTime } = location.state || {};
+  const { doctorName, appointmentDate, appointmentTime } = location.state || {};
   const navigate = useNavigate();
   const handlePayNow = () => {
-    alert("Redirecting to payment page...");
-  };
+    navigate("/paymentmethod", { 
+      state: { 
+        doctorName, 
+        appointmentDate,
+        appointmentTime 
+      } 
+    }); // Pass the doctorName to Payment page
+  };
 
   const handleViewDetails = () => {
     navigate("/viewAllAppointments");
