@@ -9,7 +9,14 @@ import PatientList from "./pages/patientList/PatientList";
 import HealthCard from "./pages/patientList/HealthCard";
 import AddPatient from "./pages/patientList/AddPatient";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Home from "./pages/home/Home";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import Payment from './pages/payment/Payment';
+import Payment1 from './pages/payment/PaymentHistory';
+import Payment3 from './pages/payment/PaymentDetails';
+import Payment2 from './pages/payment/CardPayment';
+
 
 const queryClient = new QueryClient();
 
@@ -29,6 +36,15 @@ function App() {
             element={<HealthCard />}
           />
           <Route path="/patientList/AddPatient" element={<AddPatient />} />
+
+
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment1" element={<Payment1 />} />
+          <Route path="/payment2" element={<Payment2 />} />
+          <Route path="/payment3" element={<Payment3 />} />
+
+          <Route path="/" element={<Home />}/>
+
         </Routes>
       </BrowserRouter>
 
