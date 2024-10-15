@@ -50,6 +50,9 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 
+const doctorRoutes = require('./routes/doctorRoutes');
+const appointmentRoutes = require('./routes/Appointments');
+
 // express app
 const app = express();
 
@@ -62,6 +65,9 @@ app.use(cors());
 // Routes
 app.use("/auth", authRoutes);
 app.use("/api/users", userRoutes);
+
+app.use('/api/doctors', doctorRoutes);
+app.use('/api/appointment', appointmentRoutes);
 
 // connect to db
 mongoose
