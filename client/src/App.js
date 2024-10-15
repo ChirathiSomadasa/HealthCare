@@ -9,6 +9,7 @@ import PatientList from "./pages/patientList/PatientList";
 import HealthCard from "./pages/patientList/HealthCard";
 import AddPatient from "./pages/patientList/AddPatient";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Home from "./pages/home/Home";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ function App() {
             element={<HealthCard />}
           />
           <Route path="/patientList/AddPatient" element={<AddPatient />} />
+          <Route path="/" element={<Home />}/>
         </Routes>
       </BrowserRouter>
 
