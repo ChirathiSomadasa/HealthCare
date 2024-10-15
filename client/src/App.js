@@ -26,6 +26,8 @@ import Confirmation from './pages/Appointments/Confirmation';
 import ViewAppointment from './pages/Appointments/viewAppointments';
 import EditAppointment from './pages/Appointments/EditAppointment';
 
+import Information from './pages/Information/information';
+import AddNote from './pages/Information/AddNote';
 
 const queryClient = new QueryClient();
 
@@ -63,6 +65,8 @@ function App() {
       <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
       <Route path = "/editAppointment" element={<EditAppointment/>}/>
 
+      <Route path = "/information" element={<Information/>}/>
+     <Route path = "/information/AddNote/:id" element={<AddNote/>}/>
         </Routes>
       </BrowserRouter>
 

@@ -30,7 +30,7 @@ function Header() {
     { id: "about", name: "About" },
     { id: "appointments", name: "Appointments" },
     { id: "payment", name: "Payment" },
-    { id: "contact", name: "Contact" },
+    { id: "information", name: "My Information" },
     { id: "patientList", name: "Patient List" },
   ];
 

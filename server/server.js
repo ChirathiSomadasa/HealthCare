@@ -52,6 +52,7 @@ const userRoutes = require("./routes/userRoutes");
 
 const doctorRoutes = require('./routes/doctorRoutes');
 const appointmentRoutes = require('./routes/Appointments');
+const feedbackRoutes = require('./routes/recordRoutes');
 
 // express app
 const app = express();
@@ -68,6 +69,7 @@ app.use("/api/users", userRoutes);
 
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointment', appointmentRoutes);
+app.use('/api/records', feedbackRoutes);
 
 // connect to db
 mongoose
@@ -86,3 +88,9 @@ mongoose
 
   const Payment = require('./routes/payment/paymentRoutes');
 app.use('/api_p', Payment);
+
+app.get('/api/records/user/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  const records = await Record.find({ userId }); // Adjust this based on how you store user IDs
+  res.json(records);
+});

@@ -1,0 +1,290 @@
+
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.top-button {
+    padding: 10px 20px;
+    background-color: #3acfe5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.top-button:hover {
+    background-color: #34bcd3;
+}
+
+.visit-history {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.record {
+    background-color: #fff; /* White background for records */
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.record-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333; /* Darker text for titles */
+}
+
+.record-details {
+    margin-bottom: 15px;
+}
+
+.record-details p {
+    margin: 5px 0;
+}
+
+ 
+ 
+.visit-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center all records horizontally */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for the overall container */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.record {
+     margin: 10px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center align text */
+    width: 100%; /* Use full width for responsiveness */
+    max-width: 600px; /* Limit maximum width */
+}
+
+.record-title {
+    font-size: 1.8em; /* Larger font size for titles */
+    margin-bottom: 10px;
+    color: #333; /* Darker text for titles */
+}
+
+.record-details {
+    margin-bottom: 15px;
+}
+
+.record-details p {
+    margin: 5px 0;
+    font-size: 1.1em; /* Slightly larger font for better readability */
+}
+
+.record-actions {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    gap: 10px; /* Space between buttons */
+}
+
+ 
+.visit-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the overall container */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for the overall container */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.record-container {
+    display: flex; /* Flex layout for side-by-side information */
+    justify-content: space-between; /* Space out the sides */
+    width: 100%;
+    max-width: 1200px; /* Limit maximum width */
+    background-color: #ffffff; /* White background for individual record */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px; /* Space between records */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.user-info, .details-info {
+    flex: 1; /* Each side takes equal space */
+    padding: 10px;
+    border-right: 1px solid #e0e0e0; /* Right border for separation */
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.details-info {
+    border-right: none; /* Remove right border for the last section */
+}
+
+.user-info h4 {
+    margin: 0 0 10px 0; /* Margin below the name */
+}
+
+.actions {
+    display: flex; /* Flex layout for buttons */
+    flex-direction: row; /* Stack buttons vertically */
+    align-items: flex-start; /* Align buttons to the start */
+ }
+
+.edit-button,
+.delete-button {
+    padding: 10px 15px;
+    border: none;
+    width:100px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 5px; /* Space between buttons */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+    margin-left: 20px;
+}
+
+.edit-button {
+    background-color: #288ea7; /* Green background for edit */
+    color: white;
+}
+
+.delete-button {
+    background-color: #288ea7; /* Red background for delete */
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #288ea7b6; /* Darker green on hover */
+}
+
+.delete-button:hover {
+    background-color: #288ea794; /* Darker red on hover */
+}
+
+
+/* Background styling for the feedback form container */
+.Qaddproblem_photo {
+    background-image:linear-gradient(rgba(161, 156, 156, 0.5), rgba(0, 0, 0, 0.5)),url('../../images/healthcard/login2.jpg');
+    width: 100%;
+     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+    padding: 20px;            
+}
+
+/* Styling for the form title or section heading */
+.PAtopic {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+    text-align: center !important;
+    font-weight: bold !important;
+}
+
+/* Main form styling */
+.PAproductForm {
+    width: 600px !important;
+    margin: 0 auto !important;
+    padding: 50px !important;
+    background-color: #eceaea9c !important;
+    border-radius: 10px !important;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+    display: flex;
+    flex-direction: column;   /* Ensures form items are stacked vertically */
+    gap: 15px;                /* Space between form elements */
+}
+
+/* Styling for individual form group (label and input container) */
+.PAform-group {
+    display: flex;
+    flex-direction: column;   /* Stack label and input vertically */
+    margin-bottom: 15px !important;
+}
+
+/* Label styling */
+label {
+    font-weight: bold !important;
+    margin-bottom: 5px !important;
+    font-size: 15px !important;
+}
+
+/* Input area styling */
+.PAinarea {
+    width: 100% !important;
+    padding: 20px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+ }
+
+/* Submit button styling */
+.PAbtn {
+    background-color: #0e1011 !important;
+    color: #fff !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    padding: 15px !important;
+    font-weight: bold !important;
+    width: 100% !important;
+}
+
+button[type="submit"] {
+    background-color: #090b0c !important;
+}
+
+ 
+
+.searchp {
+    display: flex;
+    align-items: center; /* Vertically aligns the input and button */
+    justify-content: flex-start; /* Aligns items to the left */
+    gap: 10px; /* Adds spacing between the input and the button */
+    align-items: end;
+    margin-left: 660px;
+    margin-bottom: 10px;
+}
+
+.patient-filter-search-btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width:200px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.patient-filter-search-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.patient-filter-search-btn:focus {
+    outline: none;
+}
+
+.patient-filter-search {
+    padding: 10px;
+    width: 30px; /* Adjusted width */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: width 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.patient-filter-search:focus {
+    width: 200px; /* Expands on focus */
+    border-color: #007bff;
+    outline: none;
+}
