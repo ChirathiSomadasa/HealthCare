@@ -10,6 +10,7 @@ import HealthCard from "./pages/patientList/HealthCard";
 import AddPatient from "./pages/patientList/AddPatient";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "./pages/home/Home";
+import Medical from "./pages/profile/Medical";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import Payment from './pages/payment/Payment';
@@ -47,21 +48,23 @@ function App() {
           <Route path="/patientList/AddPatient" element={<AddPatient />} />
 
 
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/payment1" element={<Payment1 />} />
+          <Route path="/paymentmethod" element={<Payment />} />
+          <Route path="/payment" element={<Payment1 />} />
           <Route path="/payment2" element={<Payment2 />} />
           <Route path="/payment3" element={<Payment3 />} />
 
-          <Route path="/" element={<Home />}/>
+          <Route path="/" element={<Home />} />
 
 
-          <Route path = "/appointments" element={<AppointmentStart/>}/>
-    <Route path = "/Doctorappointments" element={<DoctorAppointment/>}/>
-      <Route path = "/DoctorEntry" element={<DoctorEntryForm/>}/>
-      <Route path = "/addAppointment" element={<AddAppointment/>}/>
-      <Route path = "/confirmation" element={<Confirmation/>}/>
-      <Route path = "/viewAllAppointments" element={<ViewAppointment/>}/>
-      <Route path = "/editAppointment" element={<EditAppointment/>}/>
+
+          <Route path="/appointments" element={<AppointmentStart />} />
+          <Route path="/Doctorappointments" element={<DoctorAppointment />} />
+          <Route path="/DoctorEntry" element={<DoctorEntryForm />} />
+          <Route path="/addAppointment" element={<AddAppointment />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/viewAllAppointments" element={<ViewAppointment />} />
+          <Route path="/editAppointment/:id" element={<EditAppointment />} />
+
 
         </Routes>
       </BrowserRouter>

@@ -31,23 +31,30 @@
   .payment-table {
     width: 100%;
     border-collapse: collapse;
+    background-color: #f5f5f5;
+
   }
   
   .payment-header {
     padding: 12px;
     text-align: left;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ddd;
+    /* background-color: #f5f5f5; */
+    /* border-bottom: 1px solid #ddd; */
   }
   
   .payment-cell {
     padding: 12px;
+    max-width: 200px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
-  
-  .payment-row:hover {
-    background-color: #f0f0f0;
+  .payment-row {
+    display: flex;
+    justify-content: space-around;
   }
+  
+  /* .payment-row:hover {
+    background-color: #f0f0f0;
+  } */
   
   

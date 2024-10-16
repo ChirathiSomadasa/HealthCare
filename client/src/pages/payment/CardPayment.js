@@ -133,6 +133,7 @@ const CardPayment = ({onCardDetailsChange}) => {
                                 name="cardNumber"
                                 placeholder="Enter card number"
                                 className="card-input"
+                                style={{width: '200px', marginTop: '0', padding: '5px'}}
                                 value={cardDetails.cardNumber}
                                 onChange={handleCardInputChange}
                                 maxLength={16} // Limit card number to 16 characters
@@ -146,6 +147,7 @@ const CardPayment = ({onCardDetailsChange}) => {
                                 name="cardOwner"
                                 placeholder="Enter card owner name"
                                 className="card-input"
+                                style={{width: '200px', padding: '5px', marginTop: '0'}}
                                 value={cardDetails.cardOwner}
                                 onChange={handleCardInputChange}
                                 maxLength={50} // Limit card owner to 50 characters
@@ -161,6 +163,7 @@ const CardPayment = ({onCardDetailsChange}) => {
                                         name="expiryMonth"
                                         placeholder="MM"
                                         // className="card-input"
+                                        style={{width: '30px', padding: '5px', marginTop: '0'}}
                                         value={cardDetails.expiryMonth}
                                         onChange={handleCardInputChange}
                                         maxLength={2}
@@ -171,6 +174,7 @@ const CardPayment = ({onCardDetailsChange}) => {
                                         name="expiryYear"
                                         placeholder="YY"
                                         // className="card-input"
+                                        style={{width: '30px', padding: '5px', marginTop: '0'}}
                                         value={cardDetails.expiryYear}
                                         onChange={handleCardInputChange}
                                         maxLength={2}
@@ -185,6 +189,7 @@ const CardPayment = ({onCardDetailsChange}) => {
                                     name="cvv"
                                     placeholder="CVV"
                                     className="card-input-cvv"
+                                    style={{width: '50px', padding: '5px', marginTop: '0'}}
                                     value={cardDetails.cvv}
                                     onChange={handleCardInputChange}
                                     maxLength={4}
