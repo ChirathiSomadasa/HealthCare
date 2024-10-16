@@ -106,6 +106,10 @@ function Profile() {
     });
   };
 
+  /*function medicalRecordPage(){
+    navigate("/profile/Medical");
+  }*/
+
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading profile data</p>;
 
@@ -230,9 +234,9 @@ function Profile() {
 
       {user.role === USER_ROLES.PATIENT && user.showQR && (
         <>
-          <h1 className="qr_topic">Scan QR Code</h1>
+          <h1 className="qr_topic">My QR Code</h1>
           <div className="qr">
-            <div>
+            <div className="qrUrl">
               <QRCode
                 value={qrCodeUrl}
                 size={200}
@@ -242,7 +246,7 @@ function Profile() {
               />
             </div>
             <div>
-              <button className="scan">SCAN</button>
+              {/* <button className="scan"  onClick={() => medicalRecordPage()}>OK</button> */}
             </div>
           </div>
         </>
